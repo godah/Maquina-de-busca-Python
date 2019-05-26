@@ -2,63 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="17d5f4d9-ec9e-42c2-ab52-914a0885e577" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/Maquina-de-busca-Python.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bin/activate" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bin/activate.csh" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bin/activate.fish" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bin/chardetect" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bin/easy_install" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bin/easy_install-3.6" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bin/flask" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bin/pip" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bin/pip3" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bin/pip3.6" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bin/python" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bin/python3" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/doc/RI - Python - Prática 01.pdf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/doc/RI - Python - Prática 02.pdf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/doc/RI - Python - Prática 03.pdf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/doc/RI - Python - Prática 04.pdf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/doc/RI - Python - Prática 05.pdf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/doc/RI - Python - Prática 06.pdf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/doc/RI - Python - Prática 07.pdf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/doc/tips.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib64" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pyvenv.cfg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/share/python-wheels/CacheControl-0.11.7-py2.py3-none-any.whl" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/share/python-wheels/appdirs-1.4.3-py2.py3-none-any.whl" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/share/python-wheels/certifi-2018.1.18-py2.py3-none-any.whl" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/share/python-wheels/chardet-3.0.4-py2.py3-none-any.whl" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/share/python-wheels/colorama-0.3.7-py2.py3-none-any.whl" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/share/python-wheels/distlib-0.2.6-py2.py3-none-any.whl" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/share/python-wheels/distro-1.0.1-py2.py3-none-any.whl" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/share/python-wheels/html5lib-0.999999999-py2.py3-none-any.whl" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/share/python-wheels/idna-2.6-py2.py3-none-any.whl" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/share/python-wheels/ipaddress-0.0.0-py2.py3-none-any.whl" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/share/python-wheels/lockfile-0.12.2-py2.py3-none-any.whl" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/share/python-wheels/packaging-17.1-py2.py3-none-any.whl" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/share/python-wheels/pip-9.0.1-py2.py3-none-any.whl" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/share/python-wheels/pkg_resources-0.0.0-py2.py3-none-any.whl" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/share/python-wheels/progress-1.2-py2.py3-none-any.whl" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/share/python-wheels/pyparsing-2.2.0-py2.py3-none-any.whl" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/share/python-wheels/requests-2.18.4-py2.py3-none-any.whl" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/share/python-wheels/retrying-1.3.3-py2.py3-none-any.whl" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/share/python-wheels/setuptools-39.0.1-py2.py3-none-any.whl" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/share/python-wheels/six-1.11.0-py2.py3-none-any.whl" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/share/python-wheels/urllib3-1.22-py2.py3-none-any.whl" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/share/python-wheels/webencodings-0.5-py2.py3-none-any.whl" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/share/python-wheels/wheel-0.30.0-py2.py3-none-any.whl" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/api.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/controller/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/model/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/model/outra.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/model/pessoa.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/controller/api2.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -68,14 +12,23 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/app/api.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="150">
-              <caret line="10" column="17" lean-forward="true" selection-start-line="10" selection-start-column="17" selection-end-line="10" selection-end-column="17" />
+            <state relative-caret-position="240">
+              <caret line="16" lean-forward="true" selection-end-line="40" />
               <folding>
                 <element signature="e#0#32#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/controller/api2.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="405">
+              <caret line="32" column="22" selection-start-line="32" selection-start-column="22" selection-end-line="32" selection-end-column="22" />
             </state>
           </provider>
         </entry>
@@ -149,6 +102,7 @@
         <option value="$PROJECT_DIR$/src/controller/app.py" />
         <option value="$PROJECT_DIR$/src/__init__.py" />
         <option value="$PROJECT_DIR$/src/app/api.py" />
+        <option value="$PROJECT_DIR$/src/controller/api2.py" />
       </list>
     </option>
   </component>
@@ -186,6 +140,12 @@
               <item name="Maquina-de-busca-Python" type="b2602c69:ProjectViewProjectNode" />
               <item name="Maquina-de-busca-Python" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="controller" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Maquina-de-busca-Python" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Maquina-de-busca-Python" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="model" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
@@ -196,7 +156,7 @@
   </component>
   <component name="PropertiesComponent">
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/app/api.py" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/controller" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
@@ -260,22 +220,31 @@
       <option name="presentableId" value="Default" />
       <updated>1558900936415</updated>
     </task>
+    <task id="LOCAL-00001" summary="start project">
+      <created>1558902850468</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1558902850468</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="ToolWindowManager">
     <frame x="-3" y="25" width="1286" height="1002" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info id="Favorites" side_tool="true" />
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.2494043" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info anchor="bottom" id="Version Control" />
+      <window_info anchor="bottom" id="Version Control" visible="true" weight="0.32990867" />
       <window_info anchor="bottom" id="Python Console" />
       <window_info anchor="bottom" id="Terminal" weight="0.32990867" />
       <window_info anchor="bottom" id="Event Log" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32990867" />
       <window_info anchor="bottom" id="Run" order="2" weight="0.32990867" />
-      <window_info anchor="bottom" id="Debug" order="3" visible="true" weight="0.39954337" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.39954337" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
@@ -334,11 +303,18 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/app/api.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="10" column="17" lean-forward="true" selection-start-line="10" selection-start-column="17" selection-end-line="10" selection-end-column="17" />
+        <state relative-caret-position="240">
+          <caret line="16" lean-forward="true" selection-end-line="40" />
           <folding>
             <element signature="e#0#32#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/controller/api2.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="405">
+          <caret line="32" column="22" selection-start-line="32" selection-start-column="22" selection-end-line="32" selection-end-column="22" />
         </state>
       </provider>
     </entry>
