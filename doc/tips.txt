@@ -1,0 +1,23 @@
+
+#instalando gerenciador de ambiente python3
+$sudo apt install python3-venv --default-timeout=1000
+$python3 -m venv my-project-env
+
+#ativando ambiente
+$ source my-project-env/bin/activate
+(my-project-env) $
+
+#instalando flask
+$pip3 install flask --default-timeout=1000
+
+$pip3 install requests beautifulsoup4 --default-timeout=1000
+
+#desativando ambiente
+deactive
+
+
+
+#rodando flask
+$ export FLASK_APP=hello.py
+$ flask run
+ * Running on http://127.0.0.1:5000/
