@@ -1,5 +1,5 @@
 from flask import Flask, jsonify
-from src.model.outra import Outra
+from ..model.outra import Outra
 
 #from .model.pessoa import Pessoa
 import requests

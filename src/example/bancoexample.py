@@ -49,3 +49,28 @@ class Link(db.Model):
 #$python
 #>>>from api import Link
 #>>>Link.query.all()
+
+
+
+#erro pip
+#
+#$ mkdir ~/.pip 
+#$ vim ~/.pip/pip.conf
+#----------------------------------
+#[global]
+#index-url = http://mirrors.aliyun.com/pypi/simple/
+#[install]
+#trusted-host = mirrors.aliyun.com
+#----------------------------------
+
+
+#$ python -m pip install --trusted-host pypi.python.org --trusted-host files.pythonhosted.org --trusted-host pypi.org --upgrade pip
+
+
+
+
+
+
+
+
+
