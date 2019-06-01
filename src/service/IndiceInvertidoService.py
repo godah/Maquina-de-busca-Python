@@ -1,13 +1,13 @@
-from src.model.models import Users
+from src.model.models import IndiceInvertido
 from src.service.database import db_session
 
-class UserService:
+class IndiceInvertidoService:
 
     def listAll(self):
-        return Users.query.all()
+        return IndiceInvertido.query.all()
 
     def findById(self, id):
-        return Users.query.filter_by(id=id).first()
+        return IndiceInvertido.query.filter_by(id=id).first()
 
     def remove(self, obj):
         try:
@@ -35,6 +35,3 @@ class UserService:
         except Exception:
             db_session.rollback()
             return 'fail'
-
-    def findByUsername(self, username):
-        return Users.query.filter_by(username=username).first()

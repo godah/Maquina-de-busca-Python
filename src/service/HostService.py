@@ -1,13 +1,13 @@
-from src.model.models import Users
+from src.model.models import Host
 from src.service.database import db_session
 
-class UserService:
+class HostService:
 
     def listAll(self):
-        return Users.query.all()
+        return Host.query.all()
 
     def findById(self, id):
-        return Users.query.filter_by(id=id).first()
+        return Host.query.filter_by(id=id).first()
 
     def remove(self, obj):
         try:
@@ -36,5 +36,5 @@ class UserService:
             db_session.rollback()
             return 'fail'
 
-    def findByUsername(self, username):
-        return Users.query.filter_by(username=username).first()
+    def findByUrl(self, url):
+        return Host.query.filter_by(url=url).first()

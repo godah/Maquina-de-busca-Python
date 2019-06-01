@@ -24,6 +24,14 @@ class Documento(Base):
         #print(repr(documento))
         return documento
 
+    def dictToDocumento(self, udict):
+        self.id = udict.get("id")
+        self.frequenciaMaxima = udict.get("frequenciaMaxima")
+        self.somaQuadradosPesos = udict.get("somaQuadradosPesos")
+        self.texto = udict.get("texto")
+        self.url = udict.get("url")
+        self.visao = udict.get("visao")
+
     def __repr__(self):
         return '<Documento %r>' % self.url
 
@@ -41,6 +49,11 @@ class Host(Base):
         host['url'] = self.url
         #print(repr(host))
         return host
+    
+    def dictToHost(self, udict):
+        self.id = udict.get("id")
+        self.count = udict.get("count")
+        self.url = udict.get("url")
 
     def __repr__(self):
         return '<Host %r>' % self.url
@@ -59,6 +72,11 @@ class TermoDocumento(Base):
         termoDocumento['texto'] = self.texto
         #print(repr(termoDocumento))
         return termoDocumento
+    
+    def dictToTermoDocumento(self, udict):
+        self.id = udict.get("id")
+        self.n = udict.get("n")
+        self.texto = udict.get("texto")
 
     def __repr__(self):
         return '<TermoDocumento %r>' % self.texto
@@ -81,6 +99,12 @@ class Link(Base):
         link['host'] = self.host.hostToJson()
         #print(repr(link))
         return link
+    
+    def dictToLink(self, udict):
+        self.id = udict.get("id")
+        self.ultimaColeta = udict.get("ultimaColeta")
+        self.url = udict.get("url")
+        self.host_id = udict.get("host_id")
 
     def __repr__(self):
         return '<Link %r>' % self.url
@@ -89,7 +113,7 @@ class Link(Base):
 class DocumentoLink(Base):
     __tablename__ = 'documento_link'
     id = Column(mysql.BIGINT, primary_key=True)
-    documumento_id = Column(mysql.BIGINT, ForeignKey('Documento.id'))
+    documento_id = Column(mysql.BIGINT, ForeignKey('Documento.id'))
     documento = relationship(Documento)
     link_id = Column(mysql.BIGINT, ForeignKey('Link.id'))
     link = relationship(Link)
@@ -97,12 +121,17 @@ class DocumentoLink(Base):
     def documentoLinkToJson(self):
         documentoLink = {}
         documentoLink['id'] = self.id
-        documentoLink['documumento_id'] = self.documumento_id
+        documentoLink['documento_id'] = self.documento_id
         documentoLink['documento'] = self.documento.documentoToJson()
         documentoLink['link_id'] = self.link_id
         documentoLink['link'] = self.link.linkToJson()
         #print(repr(documentoLink))
         return documentoLink
+    
+    def dictToDocumento(self, udict):
+        self.id = udict.get("id")
+        self.documento_id = udict.get("documento_id")
+        self.link_id = udict.get("link_id")
 
     def __repr__(self):
         return '<documento_link %r>' % self.id
@@ -129,6 +158,13 @@ class IndiceInvertido(Base):
         indiceInvertido['peso'] = self.peso
         #print(repr(indiceInvertido))
         return indiceInvertido
+
+    def dictToIndiceInvertido(self, udict):
+        self.id = udict.get("id")
+        self.documento_id = udict.get("documento_id")
+        self.termo_id = udict.get("termo_id")
+        self.frequencia = udict.get("frequencia")
+        self.peso = udict.get("peso")
 
 
     def __repr__(self):

@@ -1,57 +1,57 @@
 import http
 from flask import Blueprint, abort, jsonify, request
-from src.model.models import Users
-from src.service.UserService import UserService
+from src.model.models import IndiceInvertido
+from src.service.IndiceInvertidoService import IndiceInvertidoService
 
-user_controller = Blueprint('user_controller', __name__, template_folder='templates')
-service = UserService()
+indiceinvertido_controller = Blueprint('indiceinvertido_controller', __name__, template_folder='templates')
+service = IndiceInvertidoService()
 
-@user_controller.route('/user')
+@indiceinvertido_controller.route('/indiceInvertido')
 def list():
     try:
         objs = service.listAll()
         list = []
         for obj in objs:
-            list.append(obj.userToJson())
+            list.append(obj.indiceInvertidoToJson())
         return jsonify(list)
     except Exception:
         abort(http.HTTPStatus.INTERNAL_SERVER_ERROR)
 
-@user_controller.route('/user/<id>')
+@indiceinvertido_controller.route('/indiceInvertido/<id>')
 def findById(id):
     try:
         obj = service.findById(id)
-        return jsonify(obj.userToJson())
+        return jsonify(obj.indiceInvertidoToJson())
     except:
         abort(http.HTTPStatus.INTERNAL_SERVER_ERROR)
 
-@user_controller.route('/user', methods=["POST"])
+@indiceinvertido_controller.route('/indiceInvertido', methods=["POST"])
 def post():
     if request.get_json() is None:
         abort(http.HTTPStatus.PRECONDITION_REQUIRED)
     try:
         body = request.get_json()
-        obj = Users()
-        obj.dictToUser(body)
+        obj = IndiceInvertido()
+        obj.dictToIndiceInvertido(body)
         service.save(obj)
-        return jsonify(obj.userToJson())
+        return jsonify(obj.indiceInvertidoToJson())
     except Exception:
         abort(http.HTTPStatus.INTERNAL_SERVER_ERROR)
 
-@user_controller.route('/user', methods=["PUT"])
+@indiceinvertido_controller.route('/indiceInvertido', methods=["PUT"])
 def put():
     if request.get_json() is None:
         abort(http.HTTPStatus.PRECONDITION_REQUIRED)
     try:
         body = request.get_json()
-        obj = Users()
-        obj.dictToUser(body)
+        obj = IndiceInvertido()
+        obj.dictToIndiceInvertido(body)
         obj = service.update(obj)
-        return jsonify(obj.userToJson())
+        return jsonify(obj.indiceInvertidoToJson())
     except Exception:
         abort(http.HTTPStatus.INTERNAL_SERVER_ERROR)
 
-@user_controller.route('/user/<id>', methods=["DELETE"])
+@indiceinvertido_controller.route('/indiceInvertido/<id>', methods=["DELETE"])
 def delete(id):
     if id == None:
         abort(http.HTTPStatus.PRECONDITION_REQUIRED)
