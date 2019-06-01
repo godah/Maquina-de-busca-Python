@@ -18,10 +18,18 @@ class UserService:
             db_session.rollback()
             return 'fail'
 
-
     def save(self, user):
         try:
             u = db_session.add(user)
+            db_session.commit()
+            return u
+        except Exception:
+            db_session.rollback()
+            return 'fail'
+
+    def update(self, user):
+        try:
+            u = db_session.merge(user)
             db_session.commit()
             return u
         except Exception:
