@@ -21,3 +21,53 @@ deactive
 $ export FLASK_APP=hello.py
 $ flask run
  * Running on http://127.0.0.1:5000/
+
+
+
+
+
+#for use virtualenv/virtualenvwrapper
+#mkvirtualenv <name>
+#workon <name>
+#disable
+#
+#$pip install venv 
+#$source /bin/activate
+#$deactivate
+#
+#$pip install Flask flask_sqlalchemy mysql-connector-python pymysql
+#For install dialect
+
+
+
+#for create
+#from api import db
+#db.create_all()
+
+
+#for use
+#$python
+#>>>from api import Link
+#>>>Link.query.all()
+
+
+
+#erro pip
+#
+#$ mkdir ~/.pip 
+#$ vim ~/.pip/pip.conf
+#----------------------------------
+#[global]
+#index-url = http://mirrors.aliyun.com/pypi/simple/
+#[install]
+#trusted-host = mirrors.aliyun.com
+#----------------------------------
+
+
+#$ python -m pip install --trusted-host pypi.python.org --trusted-host files.pythonhosted.org --trusted-host pypi.org --upgrade pip
+
+
+
+
+
+

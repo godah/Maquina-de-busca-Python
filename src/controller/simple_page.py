@@ -1,4 +1,6 @@
-from flask import Blueprint, render_template, abort, jsonify
+import http
+
+from flask import Blueprint, abort, jsonify, request
 from jinja2 import TemplateNotFound
 
 from src.model.models import Users
@@ -15,11 +17,22 @@ def show(page):
         abort(404)
 
 
-@simple_page.route('/user')
+@simple_page.route('/userTest')
 def user():
     try:
-        #users = Users()
-        u = Users().query.all()
-        return jsonify(u)
+        u = Users.query.filter_by(username='teste').first()
+        a = u.userToJson()
+        return jsonify(a)
     except Exception:
         abort(404)
+
+@simple_page.route('/user', methods=["POST"])
+def post():
+    if request.get_json() is None:
+        abort(http.HTTPStatus.PRECONDITION_REQUIRED)
+    try:
+        body = request.get_json()
+        print(body.get('username'))
+        return body
+    except Exception:
+        abort(http.HTTPStatus.INTERNAL_SERVER_ERROR)

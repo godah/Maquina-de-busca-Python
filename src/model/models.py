@@ -1,5 +1,5 @@
 from sqlalchemy.dialects import mysql
-from sqlalchemy import Column, ForeignKey, Integer, String
+from sqlalchemy import Column, ForeignKey
 from sqlalchemy.orm import relationship
 from src.service.database import Base
 
@@ -21,6 +21,7 @@ class Documento(Base):
         documento['texto'] = self.texto
         documento['url'] = self.url
         documento['visao'] = self.visao
+        #print(repr(documento))
         return documento
 
     def __repr__(self):
@@ -38,6 +39,7 @@ class Host(Base):
         host['id'] = self.id
         host['count'] = self.count
         host['url'] = self.url
+        #print(repr(host))
         return host
 
     def __repr__(self):
@@ -55,6 +57,7 @@ class TermoDocumento(Base):
         termoDocumento['id'] = self.id
         termoDocumento['n'] = self.n
         termoDocumento['texto'] = self.texto
+        #print(repr(termoDocumento))
         return termoDocumento
 
     def __repr__(self):
@@ -75,7 +78,8 @@ class Link(Base):
         link['ultimaColeta'] = self.ultimaColeta
         link['url'] = self.url
         link['host_id'] = self.host_id
-        link['host'] = self.host
+        link['host'] = self.host.hostToJson()
+        #print(repr(link))
         return link
 
     def __repr__(self):
@@ -94,9 +98,10 @@ class DocumentoLink(Base):
         documentoLink = {}
         documentoLink['id'] = self.id
         documentoLink['documumento_id'] = self.documumento_id
-        documentoLink['documento'] = self.documento
+        documentoLink['documento'] = self.documento.documentoToJson()
         documentoLink['link_id'] = self.link_id
-        documentoLink['link'] = self.link
+        documentoLink['link'] = self.link.linkToJson()
+        #print(repr(documentoLink))
         return documentoLink
 
     def __repr__(self):
@@ -117,11 +122,12 @@ class IndiceInvertido(Base):
         indiceInvertido = {}
         indiceInvertido['id'] = self.id
         indiceInvertido['documento_id'] = self.documento_id
-        indiceInvertido['documento'] = self.documento
+        indiceInvertido['documento'] = self.documento.documentoToJson()
         indiceInvertido['termo_id'] = self.termo_id
-        indiceInvertido['termo'] = self.termo
+        indiceInvertido['termo'] = self.termo.termoDocumentoToJson()
         indiceInvertido['frequencia'] = self.frequencia
         indiceInvertido['peso'] = self.peso
+        #print(repr(indiceInvertido))
         return indiceInvertido
 
 
@@ -142,6 +148,11 @@ class Authorities(Base):
         authorities['username'] = self.username
         #print(repr(authorities))
         return authorities
+
+    def dictToAuthorities(self, udict):
+        self.id = udict.get("id")
+        self.authority = udict.get("authority")
+        self.username = udict.get("username")
 
     def __repr__(self):
         return '<Authorities %r>' % self.authority
@@ -168,6 +179,13 @@ class Users(Base):
         users['authorities'] = self.authorities.authoritiesToJson()
         #print(repr(users))
         return users
+
+    def dictToUser(self, udict):
+        self.id = udict.get("id")
+        self.email = udict.get("email")
+        self.username = udict.get("username")
+        self.password = udict.get("password")
+        self.authorities_id = udict.get("authorities_id")
 
     def __repr__(self):
         return '<Users %r>' % self.username
