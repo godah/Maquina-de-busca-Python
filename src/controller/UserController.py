@@ -1,12 +1,10 @@
 import http
-from flask import Blueprint, abort, jsonify, request
+from flask import Blueprint, abort, jsonify, request, json, app
 from src.model.models import Users
 from src.service.UserService import UserService
 
 user_controller = Blueprint('user_controller', __name__, template_folder='templates')
 service = UserService()
-
-
 
 @user_controller.route('/usuario', methods=["PUT"])
 def put():
