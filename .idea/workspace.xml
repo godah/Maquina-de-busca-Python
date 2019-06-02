@@ -2,23 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="17d5f4d9-ec9e-42c2-ab52-914a0885e577" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/controller/ColetorController.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/controller/DocumentoController.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/controller/HostController.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/controller/IndiceInvertidoController.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/controller/LinkController.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/controller/ProcessadorConsultaController.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/service/AuthoritiesService.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/service/DocumentoLinkService.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/service/DocumentoService.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/service/HostService.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/service/IndiceInvertidoService.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/service/LinkService.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/service/TermoDocumentoService.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/api.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/api.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/controller/UserController.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/UserController.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/models.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/service/UserService.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/service/UserService.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -32,68 +17,29 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/model/models.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="192">
-              <caret line="26" column="8" selection-start-line="26" selection-start-column="8" selection-end-line="26" selection-end-column="8" />
+            <state relative-caret-position="218">
+              <caret line="209" selection-start-line="209" selection-end-line="209" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/controller/IndiceInvertidoController.py">
+        <entry file="file://$PROJECT_DIR$/src/service/UserService.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="360">
-              <caret line="36" column="39" selection-start-line="36" selection-start-column="39" selection-end-line="36" selection-end-column="39" />
+            <state relative-caret-position="267">
+              <caret line="35" selection-start-line="35" selection-end-line="35" />
               <folding>
-                <element signature="e#0#11#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/controller/LinkController.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="435">
-              <caret line="47" column="16" selection-start-line="47" selection-start-column="16" selection-end-line="47" selection-end-column="16" />
-              <folding>
-                <element signature="e#0#11#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/controller/HostController.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="240">
-              <caret line="34" column="17" selection-start-line="34" selection-start-column="17" selection-end-line="34" selection-end-column="17" />
-              <folding>
-                <element signature="e#0#11#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/controller/DocumentoController.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="240">
-              <caret line="34" column="21" lean-forward="true" selection-start-line="34" selection-start-column="21" selection-end-line="34" selection-end-column="21" />
-              <folding>
-                <element signature="e#0#11#0" expanded="true" />
+                <element signature="e#0#34#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/controller/ColetorController.py">
+        <entry file="file://$PROJECT_DIR$/src/controller/UserController.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="165">
-              <caret line="11" lean-forward="true" selection-start-line="11" selection-end-line="11" />
-              <folding>
-                <element signature="e#0#11#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="503">
+              <caret line="162" column="60" selection-start-line="162" selection-start-column="60" selection-end-line="162" selection-end-column="60" />
             </state>
           </provider>
         </entry>
@@ -111,7 +57,6 @@
     <findStrings>
       <find>db.Model</find>
       <find>dict</find>
-      <find>/user</find>
       <find>hostToJson</find>
       <find>/host</find>
       <find>user</find>
@@ -119,6 +64,10 @@
       <find>link_controller</find>
       <find>host_controller</find>
       <find>documumento_id</find>
+      <find>/user</find>
+      <find>BAD_REQUEST</find>
+      <find>PRECONDITION_REQUIRED</find>
+      <find>UNAUTHORIZED</find>
     </findStrings>
     <replaceStrings>
       <replace>linkToJson</replace>
@@ -130,6 +79,8 @@
       <replace>coletor_controller</replace>
       <replace>indiceinvertido_controller</replace>
       <replace>documento_id</replace>
+      <replace>/usuario</replace>
+      <replace>BAD_REQUEST</replace>
     </replaceStrings>
   </component>
   <component name="Git.Settings">
@@ -150,7 +101,6 @@
         <option value="$PROJECT_DIR$/src/controller/user.py" />
         <option value="$PROJECT_DIR$/src/service/database.py" />
         <option value="$PROJECT_DIR$/src/controller/simple_page.py" />
-        <option value="$PROJECT_DIR$/src/service/UserService.py" />
         <option value="$PROJECT_DIR$/src/service/HostService.py" />
         <option value="$PROJECT_DIR$/src/service/DocumentoService.py" />
         <option value="$PROJECT_DIR$/src/service/IndiceInvertidoService.py" />
@@ -158,7 +108,6 @@
         <option value="$PROJECT_DIR$/src/service/LinkService.py" />
         <option value="$PROJECT_DIR$/src/service/AuthoritiesService.py" />
         <option value="$PROJECT_DIR$/src/service/DocumentoLinkService.py" />
-        <option value="$PROJECT_DIR$/src/controller/UserController.py" />
         <option value="$PROJECT_DIR$/src/controller/DocumentoController.py" />
         <option value="$PROJECT_DIR$/src/controller/HostController.py" />
         <option value="$PROJECT_DIR$/src/controller/IndiceInvertidoController.py" />
@@ -167,6 +116,8 @@
         <option value="$PROJECT_DIR$/src/controller/ProcessadorConsultaController.py" />
         <option value="$PROJECT_DIR$/src/api.py" />
         <option value="$PROJECT_DIR$/src/model/models.py" />
+        <option value="$PROJECT_DIR$/src/service/UserService.py" />
+        <option value="$PROJECT_DIR$/src/controller/UserController.py" />
       </list>
     </option>
   </component>
@@ -184,7 +135,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -213,6 +163,7 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -311,9 +262,9 @@
       <method v="2" />
     </configuration>
     <list>
+      <item itemvalue="Python.__init__" />
       <item itemvalue="Python.app" />
       <item itemvalue="Python.models" />
-      <item itemvalue="Python.__init__" />
     </list>
     <recent_temporary>
       <list>
@@ -347,13 +298,13 @@
     <frame x="-3" y="25" width="1286" height="1002" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.18739903" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.18665607" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32990867" />
       <window_info anchor="bottom" id="Run" order="2" weight="0.32990867" />
-      <window_info anchor="bottom" id="Debug" order="3" visible="true" weight="0.28310502" />
+      <window_info active="true" anchor="bottom" id="Debug" order="3" visible="true" weight="0.28310502" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
@@ -370,6 +321,39 @@
     <MESSAGE value="start project" />
     <option name="LAST_COMMIT_MESSAGE" value="start project" />
   </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/src/controller/UserController.py</url>
+          <line>128</line>
+          <option name="timeStamp" value="8" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/src/service/UserService.py</url>
+          <line>74</line>
+          <option name="timeStamp" value="9" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/src/service/UserService.py</url>
+          <line>85</line>
+          <option name="timeStamp" value="10" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/src/controller/UserController.py</url>
+          <line>158</line>
+          <option name="timeStamp" value="19" />
+        </line-breakpoint>
+      </breakpoints>
+      <default-breakpoints>
+        <breakpoint type="python-exception">
+          <properties notifyOnTerminate="true" exception="BaseException">
+            <option name="notifyOnTerminate" value="true" />
+          </properties>
+        </breakpoint>
+      </default-breakpoints>
+    </breakpoint-manager>
+  </component>
   <component name="debuggerHistoryManager">
     <expressions id="evaluateCodeFragment">
       <expression>
@@ -383,6 +367,11 @@
       </expression>
     </expressions>
     <expressions id="evaluateExpression">
+      <expression>
+        <expression-string>obj.userToJson(</expression-string>
+        <language-id>Python</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
       <expression>
         <expression-string>u.userToJson()</expression-string>
         <language-id>Python</language-id>
@@ -423,11 +412,6 @@
         <language-id>Python</language-id>
         <evaluation-mode>EXPRESSION</evaluation-mode>
       </expression>
-      <expression>
-        <expression-string>jsonify(Users.query.all())</expression-string>
-        <language-id>Python</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
     </expressions>
   </component>
   <component name="editorHistoryManager">
@@ -456,9 +440,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/__main__.src">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/__main__.src" />
     <entry file="file://$PROJECT_DIR$/src/__init__.py">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -468,9 +450,7 @@
     <entry file="file://$PROJECT_DIR$/src/model/__init__.py">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/modelx/__init__.py">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/modelx/__init__.py" />
     <entry file="file:///usr/lib/python3.6/posixpath.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="616">
@@ -521,13 +501,6 @@
           <folding>
             <element signature="e#0#36#0" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/python3.6/site-packages/flask/app.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="193">
-          <caret line="1221" selection-start-line="1221" selection-end-line="1221" />
         </state>
       </provider>
     </entry>
@@ -588,16 +561,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/service/UserService.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="465">
-          <caret line="31" column="36" selection-start-line="31" selection-start-column="36" selection-end-line="31" selection-end-column="36" />
-          <folding>
-            <element signature="e#0#34#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/service/HostService.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="585">
@@ -638,13 +601,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/controller/UserController.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="8" column="31" lean-forward="true" selection-start-line="8" selection-start-column="31" selection-end-line="8" selection-end-column="31" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/api.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="285">
@@ -657,7 +613,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/controller/IndiceInvertidoController.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="360">
+        <state relative-caret-position="495">
           <caret line="36" column="39" selection-start-line="36" selection-start-column="39" selection-end-line="36" selection-end-column="39" />
           <folding>
             <element signature="e#0#11#0" expanded="true" />
@@ -667,7 +623,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/controller/LinkController.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="435">
+        <state relative-caret-position="660">
           <caret line="47" column="16" selection-start-line="47" selection-start-column="16" selection-end-line="47" selection-end-column="16" />
           <folding>
             <element signature="e#0#11#0" expanded="true" />
@@ -677,25 +633,18 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/controller/HostController.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="34" column="17" selection-start-line="34" selection-start-column="17" selection-end-line="34" selection-end-column="17" />
+        <state relative-caret-position="106">
+          <caret line="20" column="17" lean-forward="true" selection-start-line="20" selection-start-column="17" selection-end-line="20" selection-end-column="17" />
           <folding>
             <element signature="e#0#11#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/model/models.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="192">
-          <caret line="26" column="8" selection-start-line="26" selection-start-column="8" selection-end-line="26" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/controller/DocumentoController.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="34" column="21" lean-forward="true" selection-start-line="34" selection-start-column="21" selection-end-line="34" selection-end-column="21" />
+        <state relative-caret-position="316">
+          <caret line="34" column="21" selection-start-line="34" selection-start-column="21" selection-end-line="34" selection-end-column="21" />
           <folding>
             <element signature="e#0#11#0" expanded="true" />
           </folding>
@@ -709,6 +658,37 @@
           <folding>
             <element signature="e#0#11#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/python3.6/site-packages/flask/app.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="200">
+          <caret line="1817" selection-start-line="1817" selection-end-line="1817" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/service/UserService.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="267">
+          <caret line="35" selection-start-line="35" selection-end-line="35" />
+          <folding>
+            <element signature="e#0#34#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/model/models.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="218">
+          <caret line="209" selection-start-line="209" selection-end-line="209" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/controller/UserController.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="503">
+          <caret line="162" column="60" selection-start-line="162" selection-start-column="60" selection-end-line="162" selection-end-column="60" />
         </state>
       </provider>
     </entry>
