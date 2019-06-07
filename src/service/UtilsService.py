@@ -1,4 +1,4 @@
-
+from bs4 import BeautifulSoup
 import re, time
 
 class UtilsService:
@@ -25,3 +25,10 @@ class UtilsService:
                 if count == 0:
                     novaLista.append(old)
         return novaLista
+
+    def obterLinks(self, soup):
+        links = []
+        for link in soup.findAll('a', attrs={'href': re.compile("^http://")}):
+            links.append(link.get('href'))
+            print(link.get('href'))
+        return links
