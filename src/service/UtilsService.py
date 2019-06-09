@@ -8,7 +8,7 @@ class UtilsService:
 
     def verificaColetaConsecultiva(self, urlStringAnterior, url):
         if urlStringAnterior is not None:
-            if urlStringAnterior is url:
+            if urlStringAnterior == url:
                 print('Host consecultivo esperando 10 segundos.')
                 time.sleep(10)
 

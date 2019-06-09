@@ -20,8 +20,8 @@ def put():
         abort(http.HTTPStatus.INTERNAL_SERVER_ERROR)
 
 @user_controller.route('/usuario/remove/<id>', methods=["DELETE"])
-def delete(id):
-    if id == None:
+def removerusuario(id):
+    if id is None:
         abort(http.HTTPStatus.PRECONDITION_FAILED)
     try:
         obj = service.findById(id)
@@ -36,7 +36,7 @@ def delete(id):
 
 
 @user_controller.route('/usuario/remove', methods=["DELETE"])
-def deleteobj():
+def removeruser():
     if request.get_json() is None:
         abort(http.HTTPStatus.BAD_REQUEST)
     try:
@@ -96,21 +96,8 @@ def listarusuarioid(ident):
     except Exception:
         abort(http.HTTPStatus.INTERNAL_SERVER_ERROR)
         
-@user_controller.route('/usuario/administrador', methods=['POST'])
-def inseriradmin():
-    if request.get_json() is None:
-        abort(http.HTTPStatus.BAD_REQUEST)
-    try:
-        body = request.get_json()
-        obj = Users()
-        obj.dictToUser(body)
-        service.save(obj)
-        return jsonify(obj.userToJson())
-    except Exception:
-        abort(http.HTTPStatus.INTERNAL_SERVER_ERROR)
-
 @user_controller.route('/usuario/administrador', methods=["POST"])
-def inserir():
+def inseriradmin():
     if request.get_json() is None:
         abort(http.HTTPStatus.BAD_REQUEST)
     try:
@@ -138,7 +125,7 @@ def inserirusuario():
         abort(http.HTTPStatus.BAD_REQUEST)
 
 @user_controller.route('/usuario/encontrar/<username>')
-def encontrarpornome(username):
+def encontrarusuario(username):
     try:
         if(username is ''):
             raise Exception('entrada não é válida')
@@ -147,7 +134,7 @@ def encontrarpornome(username):
             raise ModuleNotFoundError('não encontrado.')
         return jsonify(obj)
     except ModuleNotFoundError:
-        abort(http.HTTPStatus.NO_CONTENT)
+        abort(http.HTTPStatus.BAD_REQUEST)
     except Exception:
         abort(http.HTTPStatus.BAD_REQUEST)
 

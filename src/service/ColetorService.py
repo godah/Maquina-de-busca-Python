@@ -49,7 +49,7 @@ class ColetorService:
         print('Iniciando coleta url: ['+url+"]")
         try:
             documento = Documento()
-            requisicao = requests.get(url)
+            requisicao = requests.get(url, verify=True, timeout=5)
             print("Código HTTP de resposta: " + str(requisicao.status_code))
             pagina = requisicao.text
             soup = BeautifulSoup(pagina)
@@ -61,6 +61,7 @@ class ColetorService:
 
             ds.update(documento)
         except Exception:
+            ls.atualizaDataUltimaColeta(url, datetime.datetime.now())
             print("Erro ao coletar a página!")
         finally:
             self.urlStringAnterior = self.sementes.pop()
@@ -76,6 +77,7 @@ class ColetorService:
             data = base64.b64encode(pagina.encode())
             documento.texto = str(data)
             documento.visao = stopwordsService.tratarVisao(soup)
+            self.loadOrNewLink(url, documento)
             ds.update(documento)
         else:
             documentoLink = DocumentoLink()

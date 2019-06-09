@@ -1,5 +1,5 @@
 from sqlalchemy.dialects import mysql
-from sqlalchemy import Column, ForeignKey
+from sqlalchemy import Column, ForeignKey, Text
 from sqlalchemy.orm import relationship
 from src.service.database import Base
 
@@ -99,7 +99,7 @@ class Link(Base):
         link['host'] = self.host.hostToJson()
         #print(repr(link))
         return link
-    
+
     def dictToLink(self, udict):
         self.id = udict.get("id")
         self.ultimaColeta = udict.get("ultimaColeta")
@@ -113,9 +113,9 @@ class Link(Base):
 class DocumentoLink(Base):
     __tablename__ = 'documento_link'
     id = Column(mysql.BIGINT, primary_key=True)
-    documento_id = Column(mysql.BIGINT, ForeignKey('Documento.id'))
+    documento_id = Column('documento_id',mysql.BIGINT, ForeignKey('Documento.id'))
     documento = relationship(Documento)
-    link_id = Column(mysql.BIGINT, ForeignKey('Link.id'))
+    link_id = Column('link_id',mysql.BIGINT, ForeignKey('Link.id'))
     link = relationship(Link)
 
     def documentoLinkToJson(self):
@@ -127,7 +127,7 @@ class DocumentoLink(Base):
         documentoLink['link'] = self.link.linkToJson()
         #print(repr(documentoLink))
         return documentoLink
-    
+
     def dictToDocumento(self, udict):
         self.id = udict.get("id")
         self.documento_id = udict.get("documento_id")

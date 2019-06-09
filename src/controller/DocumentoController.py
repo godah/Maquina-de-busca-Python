@@ -7,7 +7,7 @@ documento_controller = Blueprint('documento_controller', __name__, template_fold
 service = DocumentoService()
 
 @documento_controller.route('/documento')
-def list():
+def listardocumento():
     try:
         objs = service.listAll()
         list = []
@@ -18,42 +18,20 @@ def list():
         abort(http.HTTPStatus.INTERNAL_SERVER_ERROR)
 
 @documento_controller.route('/documento/<id>')
-def findById(id):
+def listardocumentoid(id):
     try:
         obj = service.findById(id)
+        if(obj is None):
+            raise ModuleNotFoundError('Nao encontrado')
         return jsonify(obj.documentoToJson())
+    except ModuleNotFoundError:
+        abort(http.HTTPStatus.BAD_REQUEST)
     except:
         abort(http.HTTPStatus.INTERNAL_SERVER_ERROR)
 
-@documento_controller.route('/documento', methods=["POST"])
-def post():
-    if request.get_json() is None:
-        abort(http.HTTPStatus.PRECONDITION_REQUIRED)
-    try:
-        body = request.get_json()
-        obj = Documento()
-        obj.dictToDocumento(body)
-        service.save(obj)
-        return jsonify(obj.documentoToJson())
-    except Exception:
-        abort(http.HTTPStatus.INTERNAL_SERVER_ERROR)
-
-@documento_controller.route('/documento', methods=["PUT"])
-def put():
-    if request.get_json() is None:
-        abort(http.HTTPStatus.PRECONDITION_REQUIRED)
-    try:
-        body = request.get_json()
-        obj = Documento()
-        obj.dictToDocumento(body)
-        obj = service.update(obj)
-        return jsonify(obj.documentoToJson())
-    except Exception:
-        abort(http.HTTPStatus.INTERNAL_SERVER_ERROR)
-
 @documento_controller.route('/documento/<id>', methods=["DELETE"])
-def delete(id):
-    if id == None:
+def removerdocid(id):
+    if id is None:
         abort(http.HTTPStatus.PRECONDITION_REQUIRED)
     try:
         obj = service.findById(id)
@@ -61,3 +39,35 @@ def delete(id):
         return obj
     except Exception:
         abort(http.HTTPStatus.INTERNAL_SERVER_ERROR)
+
+@documento_controller.route('/documento/remove', methods=["DELETE"])
+def removerdoc():
+    if request.get_json() is None:
+        abort(http.HTTPStatus.PRECONDITION_REQUIRED)
+    try:
+        body = request.get_json()
+        obj = Documento()
+        obj.dictToDocumento(body)
+        obj = service.findById(obj.id)
+        if(obj.id is None):
+            raise ModuleNotFoundError('Não encontrado')
+        service.remove(obj)
+        return jsonify(obj.documentoToJson())
+    except ModuleNotFoundError:
+        abort(http.HTTPStatus.BAD_REQUEST)
+    except Exception:
+        abort(http.HTTPStatus.BAD_REQUEST)
+
+@documento_controller.route('/documento/encontrar/<url>')
+def encontrardocumento(url):
+    try:
+        if(url is ''):
+            raise Exception('entrada não é válida')
+        obj = service.findByUrl(url)
+        if(obj is None):
+            raise ModuleNotFoundError('não encontrado.')
+        return jsonify(obj.documentoToJson())
+    except ModuleNotFoundError:
+        abort(http.HTTPStatus.BAD_REQUEST)
+    except Exception:
+        abort(http.HTTPStatus.BAD_REQUEST)
