@@ -1,3 +1,4 @@
+import math
 from sqlalchemy.dialects import mysql
 from sqlalchemy import Column, ForeignKey, Text
 from sqlalchemy.orm import relationship
@@ -31,6 +32,9 @@ class Documento(Base):
         self.texto = udict.get("texto")
         self.url = udict.get("url")
         self.visao = udict.get("visao")
+
+    def adicionarPeso(self, peso):
+        self.somaQuadradosPesos = float(self.somaQuadradosPesos) + math.sqrt(peso)
 
     def __repr__(self):
         return '<Documento %r>' % self.url
@@ -77,6 +81,9 @@ class TermoDocumento(Base):
         self.id = udict.get("id")
         self.n = udict.get("n")
         self.texto = udict.get("texto")
+
+
+
 
     def __repr__(self):
         return '<TermoDocumento %r>' % self.texto

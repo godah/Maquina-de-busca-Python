@@ -1,3 +1,5 @@
+from sqlalchemy import text
+
 from src.model.models import IndiceInvertido
 from src.service.database import db_session
 
@@ -35,3 +37,20 @@ class IndiceInvertidoService:
         except Exception:
             db_session.rollback()
             return 'fail'
+
+    def deleteAllNativeQuery(self):
+        try:
+            IndiceInvertido.query.delete()
+            db_session.commit()
+        except Exception:
+            db_session.rollback()
+
+    def inserirEntradaIndiceInvertido(self, termo, documento, f, peso):
+        iv = IndiceInvertido()
+        iv.documento = documento
+        iv.documento_id = documento.id
+        iv.frequencia = f
+        iv.termo = termo
+        iv.termo_id = termo.id
+        iv.peso = peso
+        self.save(iv)

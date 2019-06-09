@@ -7,7 +7,7 @@
 #$source /bin/activate
 #$deactivate
 #
-#$pip install Flask flask_sqlalchemy mysql-connector-python pymysql robotparser eventlet
+#$pip install Flask flask_sqlalchemy mysql-connector-python pymysql robotparser
 #For install dialect
 
 from flask import Flask

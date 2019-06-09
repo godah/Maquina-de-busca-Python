@@ -1,3 +1,5 @@
+from sqlalchemy import text
+
 from src.model.models import TermoDocumento
 from src.service.database import db_session
 
@@ -38,3 +40,10 @@ class TermoDocumentoService:
 
     def findByUrl(self, url):
         return TermoDocumento.query.filter_by(url=url).first()
+
+    def deleteAllNativeQuery(self):
+        try:
+            TermoDocumento.query.delete()
+            db_session.commit()
+        except Exception:
+            db_session.rollback()
