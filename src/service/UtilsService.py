@@ -15,20 +15,37 @@ class UtilsService:
     def removeElementosRepetidos(self, urls):
         novaLista = []
         for old in urls:
-            if novaLista.count() == 0:
+            if len(novaLista) == 0:
                 novaLista.append(old)
             else:
                 count = 0
                 for nova in novaLista:
-                    if old.lower() is nova.lower():
+                    if old.lower() == nova.lower():
                         count += 1
+                        break
                 if count == 0:
                     novaLista.append(old)
         return novaLista
 
     def obterLinks(self, soup):
         links = []
-        for link in soup.findAll('a', attrs={'href': re.compile("^http://")}):
+        linksRaw = soup.findAll('a', attrs={'href': re.compile("^http://")})
+        for link in linksRaw:
             links.append(link.get('href'))
             print(link.get('href'))
         return links
+
+    def removeLinksRepetidos(self, links):
+        novaLista = []
+        for old in links:
+            if len(novaLista) == 0:
+                novaLista.append(old)
+            else:
+                count = 0
+                for nova in novaLista:
+                    if old.url == nova.url:
+                        count += 1
+                        break
+                if count == 0:
+                    novaLista.append(old)
+        return novaLista

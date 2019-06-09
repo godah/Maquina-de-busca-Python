@@ -8,11 +8,11 @@ class StopwordsService:
 
     def readStopWords(self):
         try:
-            f = open("../resources/stopwords.txt","r")
+            f = open("./resources/stopwords.txt","r")
             for line in f:
-                self.stopwords.append(line)
+                self.stopwords.append(line[0:len(line)-1])
         except Exception:
-            print('Falha ao tentar ler arquivo')
+            print('Falha ao tentar ler arquivo stopwords.txt')
         finally:
             return self.stopwords
 
@@ -22,7 +22,7 @@ class StopwordsService:
         return self.stopwords
 
     def isStopword(self, word):
-        if self.stopwords.count() <= 0:
+        if len(self.stopwords) <= 0:
             self.readStopWords()
         try:
             if self.stopwords.index(word) >= 0:
@@ -35,16 +35,15 @@ class StopwordsService:
         words = visao.split()
         novoVisao = []
         retorno = ""
-        for word in words:
-            if not self.isStopword(word):
-                novoVisao.append(words)
-        for word in novoVisao:
-            retorno += word+" "
+        for wd in words:
+            if not self.isStopword(wd):
+                novoVisao.append(wd)
+        for wd in novoVisao:
+            retorno = retorno+wd+" "
         return retorno
 
     #requisicao.text
-    def tratarVisao(self, textHtml):
-        soup = BeautifulSoup(textHtml)
+    def tratarVisao(self, soup):
         text = soup.get_text()
         txtlimpo = self.utilsService.removerPontuacao(text)
         txttratado = self.removerStoprWords(txtlimpo)

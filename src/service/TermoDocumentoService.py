@@ -11,27 +11,27 @@ class TermoDocumentoService:
 
     def remove(self, obj):
         try:
-            ret = db_session.delete(obj)
+            db_session.delete(obj)
             db_session.commit()
-            return ret
+            return obj
         except Exception:
             db_session.rollback()
             return 'fail'
 
     def save(self, obj):
         try:
-            u = db_session.add(obj)
+            db_session.add(obj)
             db_session.commit()
-            return u
+            return obj
         except Exception:
             db_session.rollback()
             return 'fail'
 
     def update(self, obj):
         try:
-            u = db_session.merge(obj)
+            db_session.merge(obj)
             db_session.commit()
-            return u
+            return obj
         except Exception:
             db_session.rollback()
             return 'fail'

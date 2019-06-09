@@ -11,28 +11,40 @@ class DocumentoLinkService:
 
     def remove(self, obj):
         try:
-            ret = db_session.delete(obj)
+            db_session.delete(obj)
             db_session.commit()
-            return ret
+            return obj
         except Exception:
             db_session.rollback()
-            return 'fail'
+            return obj
 
     def save(self, obj):
         try:
-            u = db_session.add(obj)
+            db_session.add(obj)
             db_session.commit()
-            return u
+            return obj
         except Exception:
             db_session.rollback()
-            return 'fail'
+            return obj
 
     def update(self, obj):
         try:
-            u = db_session.merge(obj)
+            db_session.merge(obj)
             db_session.commit()
-            return u
+            return obj
         except Exception:
             db_session.rollback()
-            return 'fail'
+            return obj
+
+    def findByDocId(self, id):
+        return DocumentoLink.query.filter_by(documento_id=id).all()
+
+    def inserirDocumentoLink(self, documento, link):
+        documentoLink = DocumentoLink()
+        documentoLink.documento = documento
+        documentoLink.documento_id = documento.id
+        documentoLink.link = link
+        documentoLink.link_id = link.id
+        self.save(documentoLink)
+        return documentoLink
 

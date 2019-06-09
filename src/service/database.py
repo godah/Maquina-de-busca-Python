@@ -6,6 +6,7 @@ engine = create_engine('mysql+pymysql://root:roota1b2c3@localhost:3306/maquinade
 db_session = scoped_session(sessionmaker(autocommit=False, autoflush=False, bind=engine))
 Base = declarative_base()
 Base.query = db_session.query_property()
+db = Base.metadata
 
 # 'mysql+pymysql://root1a2b3c:root1a2b3c@85.10.205.173:3306/maquinadebuscapy'
 # 'mysql+pymysql://root:roota1b2c3@localhost:3306/maquinadebuscaPython'

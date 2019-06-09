@@ -1,5 +1,6 @@
 from src.model.models import Host
 from src.service.database import db_session
+from urllib.parse import urlparse
 
 class HostService:
 
@@ -11,27 +12,27 @@ class HostService:
 
     def remove(self, obj):
         try:
-            ret = db_session.delete(obj)
+            db_session.delete(obj)
             db_session.commit()
-            return ret
+            return obj
         except Exception:
             db_session.rollback()
             return 'fail'
 
     def save(self, obj):
         try:
-            u = db_session.add(obj)
+            db_session.add(obj)
             db_session.commit()
-            return u
+            return obj
         except Exception:
             db_session.rollback()
-            return 'fail'
+            return obj
 
     def update(self, obj):
         try:
-            u = db_session.merge(obj)
+            db_session.merge(obj)
             db_session.commit()
-            return u
+            return obj
         except Exception:
             db_session.rollback()
             return 'fail'
@@ -41,3 +42,18 @@ class HostService:
 
     def listarEmOrdemAlfabetica(self):
         return Host.query.order_by(Host.url).all()
+
+    def createUpdateHost(self, url):
+        host = Host()
+        uri = urlparse(url)
+        h = uri.scheme + "://" + uri.netloc
+        host = self.findByUrl(h)
+        if host is None:
+            host = Host()
+            host.url = h
+            host.count = 1
+            host = self.save(host)
+        else:
+            host.count += 1
+            host = self.update(host)
+        return host
