@@ -232,3 +232,116 @@ class Users(Base):
 
     def __repr__(self):
         return '<Users %r>' % self.username
+
+class Consulta:
+    texto = ""
+    visao = ""
+    termosConsulta = []
+    ranking = []
+
+    def __init__(self, texto, visao):
+        self.texto = texto
+        self.visao = visao
+
+    def getListaTermos(self):
+        termos = []
+        for termo in self.termosConsulta:
+            termos.append(termo)
+        return termos
+
+    def getSomaQuadradosPesos(self):
+        somaQuadradosPesos = 0
+        for termo in self.termosConsulta:
+            somaQuadradosPesos = somaQuadradosPesos + math.pow(termo.peso, 2)
+        return somaQuadradosPesos
+
+    def consultaToJson(self):
+        consulta = {}
+        consulta['texto'] = self.texto
+        consulta['visao'] = self.visao
+        termos = []
+        for termo in self.termosConsulta:
+            termos.append(termo.termoConsultaToJson())
+        consulta['termosConsulta'] = termos
+        ranks = []
+        for rank in self.ranking:
+            ranks.append(rank.entradaRankingToJson())
+        consulta['ranking'] = ranks
+        return consulta
+
+class TermoConsulta:
+    texto = ""
+    frequencia = 0
+    tf = 0.0
+    idf = 0.0
+    peso = 0.0
+
+    def __init__(self, texto, frequencia, idf):
+        self.texto = texto
+        self.frequencia = frequencia
+        self.idf = idf
+        self.tf = 1 + (math.log(frequencia) / math.log(2))
+        self.peso = self.tf * self.idf
+
+    def termoConsultaToJson(self):
+        termoConsulta = {}
+        termoConsulta['texto'] = self.texto
+        termoConsulta['frequencia'] = self.frequencia
+        termoConsulta['tf'] = self.tf
+        termoConsulta['idf'] = self.idf
+        termoConsulta['peso'] = self.peso
+        return termoConsulta
+
+class EntradaRanking:
+    url = ""
+    produtoPesos = []
+    somaQuadradosPesosDocumento = 0.0
+    somaQuadradosPesosConsulta = 0.0
+    similaridade = 0.0
+
+    def __init__(self, url, produtoPesos, somaQuadradosPesosDocumento, somaQuadradoPesosConsulta):
+        self.url = url
+        self.produtoPesos = produtoPesos
+        self.somaQuadradosPesosConsulta = somaQuadradoPesosConsulta
+        self.somaQuadradosPesosDocumento = somaQuadradosPesosDocumento
+
+    def entradaRankingToJson(self):
+        entradaRanking = {}
+        entradaRanking['url'] = self.url
+        entradaRanking['produtoPesos'] = self.produtoPesos
+        entradaRanking['somaQuadradosPesosDocumento'] = self.somaQuadradosPesosDocumento
+        entradaRanking['somaQuadradosPesosConsulta'] = self.somaQuadradosPesosConsulta
+        entradaRanking['similaridade'] = self.similaridade
+        return entradaRanking
+
+    def computarSimilaridade(self):
+        if self.somaQuadradosPesosDocumento > 0 and self.somaQuadradosPesosConsulta > 0:
+            numerador = 0.0
+            denominador = 0.0
+            for produtoPeso in self.produtoPesos:
+                numerador = numerador + produtoPeso
+            denominador = math.sqrt(self.somaQuadradosPesosDocumento) * math.sqrt(self.somaQuadradosPesosConsulta)
+            self.similaridade = numerador / denominador
+        else:
+            self.similaridade = 0
+
+    def computarSimilaridadeSemiNormalizada(self):
+        if self.somaQuadradosPesosDocumento > 0 and self.somaQuadradosPesosConsulta > 0:
+            numerador = 0.0
+            denominador = 0.0
+            for produtoPeso in self.produtoPesos:
+                numerador = numerador + produtoPeso
+            denominador = math.sqrt(self.somaQuadradosPesosDocumento)
+            self.similaridade = numerador / denominador
+        else:
+            self.similaridade = 0
+
+    def clone(self):
+        retorno = EntradaRanking('', [], 0.0, 0.0)
+        retorno.produtoPesos = self.produtoPesos
+        retorno.similaridade = self.similaridade
+        retorno.somaQuadradosPesosConsulta = self.somaQuadradosPesosConsulta
+        retorno.somaQuadradosPesosDocumento = self.somaQuadradosPesosDocumento
+        retorno.url = self.url
+        return retorno
+

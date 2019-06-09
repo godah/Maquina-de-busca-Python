@@ -1,6 +1,6 @@
 from sqlalchemy import text
 
-from src.model.models import IndiceInvertido
+from src.model.models import IndiceInvertido, TermoDocumento
 from src.service.database import db_session
 
 class IndiceInvertidoService:
@@ -54,3 +54,8 @@ class IndiceInvertidoService:
         iv.termo_id = termo.id
         iv.peso = peso
         self.save(iv)
+
+    def getEntradasIndiceInvertido(self, termoConsulta):
+        sql = ' select  i.* from TermoDocumento t, IndiceInvertido i, Documento d where t.id = i.termo_id and i.documento_id = d.id and t.texto = :termoConsulta '
+        return db_session.query(IndiceInvertido).from_statement(text(sql)).params(termoConsulta=termoConsulta.texto).all()
+

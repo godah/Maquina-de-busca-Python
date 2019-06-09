@@ -1,6 +1,7 @@
+import math
 from sqlalchemy import text
 
-from src.model.models import TermoDocumento
+from src.model.models import TermoDocumento, Documento
 from src.service.database import db_session
 
 class TermoDocumentoService:
@@ -47,3 +48,25 @@ class TermoDocumentoService:
             db_session.commit()
         except Exception:
             db_session.rollback()
+
+    def getIdf(self, texto):
+        N = len(Documento.query.all())
+        termoDocumento = TermoDocumento.query.filter_by(texto=texto).first()
+        n = termoDocumento.n
+        return self.calcularIdf(N, n)
+
+    def findByTermo(self, termo):
+        sql = " select * from TermoDocumento where lower(texto) = lower(:termo) "
+        return db_session.query(TermoDocumento).from_statement(text(sql)).params(termo=termo).first()
+
+    def log(self, x, base):
+        a = math.log(x)
+        b = math.log(base)
+        if a == 0 or b == 0:
+            return 0
+        return a/b
+
+    def calcularIdf(self, N, n):
+        if N == 0 or n == 0:
+            return 0
+        return self.log((N / n), 2)

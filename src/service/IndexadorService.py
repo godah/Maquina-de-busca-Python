@@ -51,8 +51,7 @@ class IndexadorService:
 
     def getTermo(self, word):
         try:
-            indice = self.termos.index(word)
-            termo = self.termos[indice]
+            termo = ts.findByTermo(word)
             termo.n = self.quantDocPorTermo(word)
             termo = ts.update(termo)
             return termo
