@@ -1,4 +1,4 @@
-from src.model.models import Host
+from src.model.models import Host, Link, DocumentoLink
 from src.service.database import db_session
 from urllib.parse import urlparse
 
@@ -12,6 +12,12 @@ class HostService:
 
     def remove(self, obj):
         try:
+            links = Link.query.filter_by(host_id=obj.id).all()
+            for link in links:
+                doclinks = DocumentoLink.query.filter_by(link_id=link.id).all()
+                for doclink in doclinks:
+                    db_session.delete(doclink)
+                db_session.delete(link)
             db_session.delete(obj)
             db_session.commit()
             return obj
@@ -38,7 +44,7 @@ class HostService:
             return 'fail'
 
     def findByUrl(self, url):
-        return Host.query.filter_by(url=url).first()
+        return Host.query.filter(Host.url.like("%"+url+"%")).all()
 
     def listarEmOrdemAlfabetica(self):
         return Host.query.order_by(Host.url).all()

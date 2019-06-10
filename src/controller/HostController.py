@@ -38,10 +38,13 @@ def encontrardocumento(url):
     try:
         if(url is ''):
             raise Exception('entrada não é válida')
-        obj = service.findByUrl(url)
-        if(obj is None):
+        objs = service.findByUrl(url)
+        if(objs is None):
             raise ModuleNotFoundError('não encontrado.')
-        return jsonify(obj.hostToJson())
+        retorno = []
+        for obj in objs:
+            retorno.append(obj.hostToJson())
+        return jsonify(retorno)
     except ModuleNotFoundError:
         abort(http.HTTPStatus.BAD_REQUEST)
     except Exception:
@@ -62,7 +65,7 @@ def removerdocid(id):
     except Exception:
         abort(http.HTTPStatus.INTERNAL_SERVER_ERROR)
 
-@host_controller.route('/documento/remove', methods=["DELETE"])
+@host_controller.route('/host/remove', methods=["DELETE"])
 def removerdoc():
     if request.get_json() is None:
         abort(http.HTTPStatus.PRECONDITION_REQUIRED)
@@ -73,8 +76,8 @@ def removerdoc():
         obj = service.findById(obj.id)
         if(obj.id is None):
             raise ModuleNotFoundError('Não encontrado')
-        service.remove(obj.hostToJson())
-        return jsonify(obj.documentoToJson())
+        service.remove(obj)
+        return jsonify(obj.hostToJson())
     except ModuleNotFoundError:
         abort(http.HTTPStatus.BAD_REQUEST)
     except Exception:

@@ -6,7 +6,7 @@ from src.service.DocumentoService import DocumentoService
 documento_controller = Blueprint('documento_controller', __name__, template_folder='templates')
 service = DocumentoService()
 
-@documento_controller.route('/documento')
+@documento_controller.route('/documento/')
 def listardocumento():
     try:
         objs = service.listAll()
