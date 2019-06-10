@@ -1,3 +1,5 @@
+import base64
+
 import math
 from sqlalchemy.dialects import mysql
 from sqlalchemy import Column, ForeignKey, Text
@@ -19,7 +21,7 @@ class Documento(Base):
         documento['id'] = self.id
         documento['frequenciaMaxima'] = self.frequenciaMaxima
         documento['somaQuadradosPesos'] = self.somaQuadradosPesos
-        documento['texto'] = self.texto
+        documento['texto'] = base64.b64decode(self.texto[2:])
         documento['url'] = self.url
         documento['visao'] = self.visao
         #print(repr(documento))

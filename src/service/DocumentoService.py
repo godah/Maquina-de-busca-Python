@@ -1,4 +1,6 @@
-from src.model.models import Documento
+from sqlalchemy import text
+
+from src.model.models import Documento, DocumentoLink, IndiceInvertido
 from src.service.database import db_session
 
 class DocumentoService:
@@ -11,6 +13,12 @@ class DocumentoService:
 
     def remove(self, obj):
         try:
+            doclinks = DocumentoLink.query.filter_by(documento_id=obj.id).all()
+            for doc in doclinks:
+                db_session.delete(doc)
+            indInv = IndiceInvertido.query.filter_by(documento_id=obj.id).all()
+            for ind in indInv:
+                db_session.delete(ind)
             db_session.delete(obj)
             db_session.commit()
             return obj
@@ -37,4 +45,4 @@ class DocumentoService:
             return 'fail'
 
     def findByUrl(self, url):
-        return Documento.query.filter_by(url=url).first()
+        return Documento.query.filter(Documento.url.like("%"+url+"%")).all()

@@ -56,7 +56,7 @@ def removerdocid(id):
         if (obj is None):
             raise ModuleNotFoundError('no content')
         service.remove(obj)
-        return obj
+        return jsonify(obj.hostToJson())
     except ModuleNotFoundError:
         abort(http.HTTPStatus.BAD_REQUEST)
     except Exception:
@@ -73,7 +73,7 @@ def removerdoc():
         obj = service.findById(obj.id)
         if(obj.id is None):
             raise ModuleNotFoundError('Não encontrado')
-        service.remove(obj)
+        service.remove(obj.hostToJson())
         return jsonify(obj.documentoToJson())
     except ModuleNotFoundError:
         abort(http.HTTPStatus.BAD_REQUEST)

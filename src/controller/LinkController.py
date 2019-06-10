@@ -87,7 +87,7 @@ def removerlinkid(id):
     try:
         obj = service.findById(id)
         service.remove(obj)
-        return obj
+        return jsonify(obj.linkToJson())
     except Exception:
         abort(http.HTTPStatus.INTERNAL_SERVER_ERROR)
 
