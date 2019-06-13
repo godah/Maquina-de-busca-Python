@@ -64,7 +64,7 @@ class ColetorService:
             ls.atualizaDataUltimaColeta(url, datetime.datetime.now())
             print("Erro ao coletar a página!")
         finally:
-            self.urlStringAnterior = self.sementes.pop()
+            self.urlStringAnterior = self.sementes.remove(0)
             self.sementes = ls.obterLinksNaoColetados()
             self.sementes = us.removeLinksRepetidos(self.sementes)
         return documento
