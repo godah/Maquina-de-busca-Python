@@ -1,0 +1,17 @@
+git clone https://github.com/godah/Maquina-de-busca-Python.git
+
+pip install virtualenv
+mkvirtualenv Maquina-de-busca-Python
+
+workon Maquina-de-busca-Python
+
+pip install Flask 
+pip install flask_sqlalchemy 
+pip install sqlalchemy
+pip install mysql-connector-python
+pip install pymysql
+pip install requests
+pip install beautifulsoup4
+
+set FLASK_APP=api.py
+flask run
