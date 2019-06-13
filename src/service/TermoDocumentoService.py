@@ -52,6 +52,8 @@ class TermoDocumentoService:
     def getIdf(self, texto):
         N = len(Documento.query.all())
         termoDocumento = TermoDocumento.query.filter_by(texto=texto).first()
+        if termoDocumento is None:
+            return 0.0
         n = termoDocumento.n
         return self.calcularIdf(N, n)
 
