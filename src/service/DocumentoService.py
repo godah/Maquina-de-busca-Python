@@ -45,4 +45,4 @@ class DocumentoService:
             return 'fail'
 
     def findByUrl(self, url):
-        return Documento.query.filter(Documento.url.like("%"+url+"%")).all()
+        return Documento.query.filter_by(url=url).first()

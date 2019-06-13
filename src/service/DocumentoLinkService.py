@@ -39,12 +39,15 @@ class DocumentoLinkService:
     def findByDocId(self, id):
         return DocumentoLink.query.filter_by(documento_id=id).all()
 
+    def findByLinkId(self, id):
+        return DocumentoLink.query.filter_by(link_id=id).all()
+
     def inserirDocumentoLink(self, documento, link):
         documentoLink = DocumentoLink()
         documentoLink.documento = documento
         documentoLink.documento_id = documento.id
         documentoLink.link = link
         documentoLink.link_id = link.id
-        self.save(documentoLink)
+        documentoLink = self.save(documentoLink)
         return documentoLink
 

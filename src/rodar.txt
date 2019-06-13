@@ -15,3 +15,21 @@ pip install beautifulsoup4
 
 set FLASK_APP=api.py
 flask run
+
+#setar ambiente no vscode
+1-ctrl+shift+p
+python: <selecionar>
+
+2-Menu: Debug > add config
+-python
+-Flask
+editar o arquivo 'launch.json' e mudar para api.py
+#F5 debugar
+
+
+
+
+#rodar
+workon Maquina-de-busca-Python
+set FLASK_APP=api.py
+flask run

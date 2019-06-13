@@ -2,8 +2,10 @@ from sqlalchemy import text
 from src.model.models import Link, Host
 from src.service.database import db_session
 from src.service.HostService import HostService
+from src.service.DocumentoLinkService import DocumentoLinkService
 
 hs = HostService()
+dls = DocumentoLinkService()
 
 class LinkService:
 
@@ -15,6 +17,10 @@ class LinkService:
 
     def remove(self, obj):
         try:
+            #TODO falha ao remover link
+            documentoLinks = dls.findByLinkId(obj.id)
+            for dl in documentoLinks:
+                dls.remove(dl)
             db_session.delete(obj)
             db_session.commit()
             return obj

@@ -37,6 +37,7 @@ class ColetorService:
                         documentos.append(self.coletar(self.sementes[0].url))
                 except Exception:
                     print('falha a coletar: '+self.sementes[0].url)
+                    ls.remove(self.sementes[0])
                 finally:
                     del self.sementes[0]
                 print(str(len(self.sementes))+" Sementes restantes.")
@@ -64,7 +65,7 @@ class ColetorService:
             ls.atualizaDataUltimaColeta(url, datetime.datetime.now())
             print("Erro ao coletar a página!")
         finally:
-            self.urlStringAnterior = self.sementes.remove(0)
+            self.urlStringAnterior = self.sementes[0]
             self.sementes = ls.obterLinksNaoColetados()
             self.sementes = us.removeLinksRepetidos(self.sementes)
         return documento
