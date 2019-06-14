@@ -46,6 +46,9 @@ class HostService:
     def findByUrl(self, url):
         return Host.query.filter_by(url=url).first()
 
+    def findByUrlLike(self, url):
+        return Host.query.filter(Host.url.like("%"+url+"%")).all()
+
     def listarEmOrdemAlfabetica(self):
         return Host.query.order_by(Host.url).all()
 

@@ -12,6 +12,8 @@ pip install mysql-connector-python
 pip install pymysql
 pip install requests
 pip install beautifulsoup4
+pip install Paginator
+pip install paginate
 
 set FLASK_APP=api.py
 flask run

@@ -1,11 +1,14 @@
+from paginator import Paginator
 from sqlalchemy import text
 from src.model.models import Link, Host
 from src.service.database import db_session
 from src.service.HostService import HostService
 from src.service.DocumentoLinkService import DocumentoLinkService
+from src.service.UtilsService import UtilsService
 
 hs = HostService()
 dls = DocumentoLinkService()
+utilsService = UtilsService()
 
 class LinkService:
 
@@ -59,10 +62,38 @@ class LinkService:
         return db_session.query(Link).from_statement(text(sql)).all()
 
     def listarPagina(self):
-        return Link.query.order_by(Link.url).all().paginate(1, 15, error_out=False)
+        links = Link.query.order_by(Link.url).all()
+        if len(links) == 0:
+            return []
+        paginator = self.paginator(links, 15)
+        return paginator
+
 
     def buscarPagina(self, pageFlag):
-        return Link.query.order_by(Link.url).all().paginate(int(pageFlag), 15, error_out=False)
+        links = Link.query.order_by(Link.url).all()
+        if len(links) == 0:
+            return []
+        paginator = self.paginator(links, 15)
+        links =[]
+        if len(paginator) < int(pageFlag):
+            return []
+        page = paginator[int(pageFlag)]
+        for link in page:
+            links.append(link)
+        return links
+
+    def paginator(self, links, per_page):
+        i = 1
+        paginator = []
+        subLista = []
+        for link in links:
+            subLista.append(link)
+            if i == per_page:
+                paginator.append(subLista)
+                subLista = []
+                i = 0
+            i = i+1
+        return  paginator
 
     def obterLinksPorIntervaloDeIdentificacao(self, id1, id2):
         sql = ' SELECT l.* FROM Link l WHERE l.id BETWEEN :id1 AND :id2 '
@@ -70,20 +101,23 @@ class LinkService:
 
     def contarLinksPorIntervaloDeIdentificacao(self, id1, id2):
         sql = ' SELECT COUNT(l.id) FROM Link l WHERE l.id BETWEEN :id1 AND :id2 '
-        return db_session.query(Link).from_statement(text(sql)).params(id1=id1, id2=id2).all()
+        return len(self.obterLinksPorIntervaloDeIdentificacao(id1, id2))
 
     def encontrarSementePorHost(self, link):
-        sql = ' SELECT l.* FROM Link l WHERE l.url LIKE "%:link%" AND l.ultimaColeta IS NULL '
-        return db_session.query(Link).from_statement(text(sql)).params(link=link).all()
+        sql = ' SELECT l.* FROM Link l WHERE l.url LIKE "%'+link+'%" AND l.ultimaColeta IS NULL '
+        return db_session.query(Link).from_statement(text(sql)).all()
 
-    def encontrarSementesPorIntervaloDatas(self, dt1, dt2):
-        sql = ' SELECT l.* FROM Link l WHERE l.id BETWEEN :dt1 AND :dt2 AND l.ultimaColeta IS NULL '
-        return db_session.query(Link).from_statement(text(sql)).params(dt1=dt1, dt2=dt2).all()
+    def encontrarSementesPorIntervaloDatas(self, dateIso1, dateIso2):
+        sql = ' SELECT l.* FROM Link l WHERE l.ultimaColeta BETWEEN :dt1 AND :dt2 '
+        date1 = utilsService.isoToDate(dateIso1)
+        date2 = utilsService.isoToDate(dateIso2)
+        return db_session.query(Link).from_statement(text(sql)).params(dt1=date1, dt2=date2).all()
 
-    def atualizaDataUltimaColeta(self, host, data):
-        sql = ' UPDATE Link l SET l.ultimaColeta = :data WHERE l.url LIKE CONCAT ('%',:host,'%') '
-        db_session.query(Link).from_statement(text(sql)).params(host=host, data=data)
-        return self.findByUrl(host)
+    def atualizaDataUltimaColeta(self, host, dataIso):
+        sql = ' UPDATE Link l SET l.ultimaColeta = :data WHERE l.url LIKE (%'+host+'%) '
+        data = utilsService.isoToDate(dataIso)
+        db_session.query(Link).from_statement(text(sql)).params(data=data)
+        return len(self.findByUrlLike(host))
 
     def inserirSemente(self, url):
         link = Link()

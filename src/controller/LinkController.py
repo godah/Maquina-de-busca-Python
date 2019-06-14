@@ -1,3 +1,4 @@
+#Testado
 import http
 from flask import Blueprint, abort, jsonify, request
 from src.model.models import Link
@@ -25,7 +26,7 @@ def findById(id):
             raise ModuleNotFoundError('não encontrado.')
         return jsonify(obj.linkToJson())
     except ModuleNotFoundError:
-        abort(http.HTTPStatus.NO_CONTENT)
+        abort(http.HTTPStatus.BAD_REQUEST)
     except:
         abort(http.HTTPStatus.INTERNAL_SERVER_ERROR)
 
@@ -165,11 +166,8 @@ def listarPagina():
     try:
         paginator = service.listarPagina()
         list = []
-        while paginator.has_next:
-            page = paginator.next()
-            objs = page.items
-            for obj in objs:
-                print(obj.url)
+        for page in paginator:
+            for obj in page:
                 list.append(obj.linkToJson())
         return jsonify(list)
     except Exception:
@@ -177,46 +175,41 @@ def listarPagina():
 
 @link_controller.route('/link/pagina/<pageFlag>')
 def listarPaginaPorPageFlag(pageFlag):
-    if (int(id) is None):
+    if (id is None):
         abort(http.HTTPStatus.PRECONDITION_REQUIRED)
     try:
-        paginator = service.buscarPagina(pageFlag)
+        objs = service.buscarPagina(pageFlag)
         list = []
-        while paginator.has_next:
-            page = paginator.next()
-            objs = page.items
-            for obj in objs:
-                print(obj.url)
-                list.append(obj.linkToJson())
+        for obj in objs:
+            list.append(obj.linkToJson())
         return jsonify(list)
+    except ModuleNotFoundError:
+        abort(http.HTTPStatus.BAD_REQUEST)
     except Exception:
         abort(http.HTTPStatus.INTERNAL_SERVER_ERROR)
-
+#TODO pausa
 @link_controller.route('/link/intervalo/<id1>/<id2>')
 def encontrarLinkPorIntervalo(id1, id2):
     try:
-        if (int(id1) is None or int(id2) is None):
+        if (id1 is None or id2 is None):
             abort(http.HTTPStatus.PRECONDITION_REQUIRED)
         objs = service.obterLinksPorIntervaloDeIdentificacao(id1, id2)
         list = []
         for obj in objs:
-            print(obj.url)
             list.append(obj.linkToJson())
         return jsonify(list)
     except Exception:
         abort(http.HTTPStatus.INTERNAL_SERVER_ERROR)
 
-@link_controller.route('/link/intervalo/<id1>/<id2>')
+@link_controller.route('/link/intervalo/contar/<id1>/<id2>')
 def contarLinkPorIntervalo(id1, id2):
     try:
-        if int(id1) is None or int(id2) is None:
+        if id1 is None or id2 is None:
             abort(http.HTTPStatus.PRECONDITION_REQUIRED)
-        objs = service.obterLinksPorIntervaloDeIdentificacao(id1, id2)
-        list = []
-        for obj in objs:
-            print(obj.url)
-            list.append(obj.linkToJson())
-        return jsonify(list)
+        count = service.contarLinksPorIntervaloDeIdentificacao(id1, id2)
+        resp = {}
+        resp['count'] = count
+        return jsonify(resp)
     except Exception:
         abort(http.HTTPStatus.INTERNAL_SERVER_ERROR)
 
@@ -226,9 +219,7 @@ def inserirUrlSemente():
         abort(http.HTTPStatus.PRECONDITION_REQUIRED)
     try:
         body = request.get_json()
-        obj = Link()
-        obj.dictToLink(body)
-        obj = service.inserirSemente(obj.url)
+        obj = service.inserirSemente(body.get("url"))
         return jsonify(obj.linkToJson())
     except Exception:
         abort(http.HTTPStatus.INTERNAL_SERVER_ERROR)
@@ -243,7 +234,6 @@ def encontrarSementePorHost(host):
         objs = service.encontrarSementePorHost(host)
         list = []
         for obj in objs:
-            print(obj.url)
             list.append(obj.linkToJson())
         return jsonify(list)
     except ModuleNotFoundError:
@@ -267,13 +257,13 @@ def encontrarSementesPorIntervaloDatas(dt1, dt2):
         abort(http.HTTPStatus.INTERNAL_SERVER_ERROR)
 
 
-@link_controller.route('/link/ultima/coleta/<link>/<data>', methods=["PUT"])
+@link_controller.route('/link/ultima/coleta/<host>/<data>', methods=["PUT"])
 def atualizaDataUltimaColeta(host, data):
     try:
         if host is None or data is None:
             raise ModuleNotFoundError
         n = service.atualizaDataUltimaColeta(host, data)
-        return "sucesso", "número de registros atualizados: " + n
+        return "sucesso - numero de registros atualizados: " + str(n)
     except ModuleNotFoundError:
         abort(http.HTTPStatus.BAD_REQUEST)
     except Exception:

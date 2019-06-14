@@ -39,7 +39,7 @@ def encontrardocumento(url):
     try:
         if(url is ''):
             raise Exception('entrada não é válida')
-        objs = service.findByUrl(url)
+        objs = service.findByUrlLike(url)
         if(objs is None):
             raise ModuleNotFoundError('não encontrado.')
         retorno = []
