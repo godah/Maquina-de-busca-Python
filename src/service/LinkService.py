@@ -17,7 +17,6 @@ class LinkService:
 
     def remove(self, obj):
         try:
-            #TODO falha ao remover link
             documentoLinks = dls.findByLinkId(obj.id)
             for dl in documentoLinks:
                 dls.remove(dl)
@@ -41,13 +40,16 @@ class LinkService:
         try:
             db_session.merge(obj)
             db_session.commit()
-            return obj
+            return self.findById(obj.id)
         except Exception:
             db_session.rollback()
             return obj
 
     def findByUrl(self, url):
         return Link.query.filter_by(url=url).first()
+
+    def findByUrlLike(self, key):
+        return Link.query.filter(Link.url.like("%"+key+"%")).all()
 
     def listarEmOrdemAlfabetica(self):
         return Link.query.order_by(Link.url).all()
@@ -80,7 +82,8 @@ class LinkService:
 
     def atualizaDataUltimaColeta(self, host, data):
         sql = ' UPDATE Link l SET l.ultimaColeta = :data WHERE l.url LIKE CONCAT ('%',:host,'%') '
-        return db_session.query(Link).from_statement(text(sql)).params(host=host, data=data)
+        db_session.query(Link).from_statement(text(sql)).params(host=host, data=data)
+        return self.findByUrl(host)
 
     def inserirSemente(self, url):
         link = Link()
@@ -96,3 +99,4 @@ class LinkService:
         else:
             link = linkOld
         return link
+    

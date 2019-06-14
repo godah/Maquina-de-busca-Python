@@ -1,5 +1,6 @@
 from bs4 import BeautifulSoup
 import re, time
+from datetime import datetime
 
 class UtilsService:
 
@@ -49,3 +50,10 @@ class UtilsService:
                 if count == 0:
                     novaLista.append(old)
         return novaLista
+
+    def dateToIso(self, date):
+        return date.strftime("%Y-%m-%dT%H:%M:%S")
+
+    def isoToDate(self, iso):
+        return  datetime.strptime(iso, '%Y-%m-%dT%H:%M:%S')
+

@@ -1,3 +1,5 @@
 {
-    "python.pythonPath": "C:\\Users\\luciano.lima\\envs\\Maquina-de-buca-Python\\Scripts\\python.exe"
+    "python.pythonPath": "Maquina-de-busca-Python/bin/python",
+    "python.linting.pylintEnabled": true,
+    "python.linting.enabled": true
 }

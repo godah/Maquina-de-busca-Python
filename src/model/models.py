@@ -5,7 +5,9 @@ from sqlalchemy.dialects import mysql
 from sqlalchemy import Column, ForeignKey, Text
 from sqlalchemy.orm import relationship
 from src.service.database import Base
+from src.service.UtilsService import UtilsService
 
+us = UtilsService()
 
 class Documento(Base):
     __tablename__ = 'Documento'
@@ -102,16 +104,16 @@ class Link(Base):
     def linkToJson(self):
         link = {}
         link['id'] = self.id
-        link['ultimaColeta'] = self.ultimaColeta
+        if self.ultimaColeta is not None:
+            link['ultimaColeta'] = us.dateToIso(self.ultimaColeta)
         link['url'] = self.url
         link['host_id'] = self.host_id
-        link['host'] = self.host.hostToJson()
         #print(repr(link))
         return link
 
     def dictToLink(self, udict):
         self.id = udict.get("id")
-        self.ultimaColeta = udict.get("ultimaColeta")
+        self.ultimaColeta = us.isoToDate(udict.get("ultimaColeta"))
         self.url = udict.get("url")
         self.host_id = udict.get("host_id")
 

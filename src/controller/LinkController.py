@@ -37,7 +37,7 @@ def post():
         body = request.get_json()
         obj = Link()
         obj.dictToLink(body)
-        service.save(obj)
+        obj = service.inserirSemente(obj.url)
         return jsonify(obj.linkToJson())
     except Exception:
         abort(http.HTTPStatus.INTERNAL_SERVER_ERROR)
@@ -50,9 +50,6 @@ def atualizaLink():
         body = request.get_json()
         obj = Link()
         obj.dictToLink(body)
-        obj = service.findById(obj.id)
-        if(obj is None):
-            raise ModuleNotFoundError('não encontrado.')
         obj = service.update(obj)
         return jsonify(obj.linkToJson())
     except ModuleNotFoundError:
@@ -69,7 +66,7 @@ def atualizaUltimaColetaSementes():
         objn = Link()
         obj = Link()
         objn.dictToLink(body)
-        obj = service.findById(obj.id)
+        obj = service.findById(objn.id)
         if(obj is None):
             raise ModuleNotFoundError('não encontrado.')
         obj.ultimaColeta = objn.ultimaColeta
@@ -86,8 +83,12 @@ def removerlinkid(id):
         abort(http.HTTPStatus.PRECONDITION_REQUIRED)
     try:
         obj = service.findById(id)
+        if obj is None:
+            raise ModuleNotFoundError('Not found')
         service.remove(obj)
         return jsonify(obj.linkToJson())
+    except ModuleNotFoundError:
+        abort(http.HTTPStatus.BAD_REQUEST)
     except Exception:
         abort(http.HTTPStatus.INTERNAL_SERVER_ERROR)
 
@@ -99,10 +100,10 @@ def removerdoc():
         body = request.get_json()
         obj = Link()
         obj.dictToLink(body)
-        obj = service.findById(obj.id)
-        if(obj.id is None):
+        service.findById(obj.id)
+        if(obj is None):
             raise ModuleNotFoundError('Não encontrado')
-        service.remove(obj)
+        obj = service.remove(obj)
         return jsonify(obj.linkToJson())
     except ModuleNotFoundError:
         abort(http.HTTPStatus.BAD_REQUEST)
@@ -115,10 +116,13 @@ def encontrardocumento(url):
     try:
         if(url is ''):
             raise Exception('entrada não é válida')
-        obj = service.findByUrl(url)
-        if(obj is None):
+        objs = service.findByUrlLike(url)
+        if(len(objs) == 0):
             raise ModuleNotFoundError('não encontrado.')
-        return jsonify(obj.linkToJson())
+        retorno = []
+        for obj in objs:
+            retorno.append(obj.linkToJson())
+        return jsonify(retorno)
     except ModuleNotFoundError:
         abort(http.HTTPStatus.BAD_REQUEST)
     except Exception:
@@ -155,6 +159,7 @@ def listarSementes():
     except Exception:
         abort(http.HTTPStatus.BAD_REQUEST)
 
+#TODO pausa teste
 @link_controller.route('/link/pagina')
 def listarPagina():
     try:
