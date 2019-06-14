@@ -94,6 +94,8 @@ class IndexadorService:
         return tf*idf
 
     def cacularTf(self, f):
+        if f == 0:
+            return 0
         return 1 + self.log(f, 2)
 
     def log(self, x, base):
