@@ -1,8 +1,8 @@
 import base64
-
 import math
+from flask_login import UserMixin
 from sqlalchemy.dialects import mysql
-from sqlalchemy import Column, ForeignKey, Text
+from sqlalchemy import Column, ForeignKey
 from sqlalchemy.orm import relationship
 from src.service.database import Base
 from src.service.UtilsService import UtilsService
@@ -181,50 +181,34 @@ class IndiceInvertido(Base):
     def __repr__(self):
         return '<IndiceInvertido %r>' % self.peso
 
+# Define the Role data-model
+class Role(Base):
+    __tablename__ = 'roles'
+    id = Column(mysql.INTEGER, primary_key=True)
+    name = Column(mysql.VARCHAR(50), unique=True)
 
-class Authorities(Base):
-    __tablename__ = 'authorities'
-    id = Column(mysql.BIGINT, primary_key=True)
-    authority = Column(mysql.VARCHAR(255))
-    username = Column(mysql.VARCHAR(255), unique=True)
-
-    def authoritiesToJson(self):
-        authorities = {}
-        authorities['id'] = self.id
-        authorities['authority'] = self.authority
-        authorities['username'] = self.username
-        #print(repr(authorities))
-        return authorities
-
-    def dictToAuthorities(self, udict):
-        self.id = udict.get("id")
-        self.authority = udict.get("authority")
-        self.username = udict.get("username")
-
-    def __repr__(self):
-        return '<Authorities %r>' % self.authority
-
-
-class Users(Base):
-    __tablename__ = "users"
-    id = Column(mysql.BIGINT, primary_key=True)
-    email = Column(mysql.VARCHAR(255))
-    enabled = Column(mysql.BOOLEAN)    
-    username = Column(mysql.VARCHAR(255))
-    password = Column(mysql.VARCHAR(255))
-    authorities_id = Column(mysql.BIGINT, ForeignKey('authorities.id'))
-    authorities = relationship(Authorities)
+# Define User data-model
+class User(Base, UserMixin):
+    __tablename__ = 'users'
+    id = Column(mysql.INTEGER, primary_key=True)
+    email = Column(mysql.VARCHAR(255), nullable=False, unique=True)
+    email_confirmed_at = Column(mysql.DATETIME)
+    username = Column(mysql.VARCHAR(50), nullable=False, unique=True)
+    password = Column(mysql.VARCHAR(255), nullable=False)
+    first_name = Column(mysql.VARCHAR(50), nullable=False)
+    last_name = Column(mysql.VARCHAR(50), nullable=False)
+    roles = relationship('Role', secondary='user_roles')
 
     def userToJson(self):
         users = {}
         users['id'] = self.id
         users['email'] = self.email
-        users['enabled'] = self.enabled
+        users['email_confirmed_at'] = self.email_confirmed_at
         users['username'] = self.username
         users['password'] = self.password
-        users['authorities_id'] = self.authorities_id
-        users['authorities'] = self.authorities.authoritiesToJson()
-        #print(repr(users))
+        users['first_name'] = self.first_name
+        users['last_name'] = self.last_name
+        users['roles'] = self.roles.authoritiesToJson()
         return users
 
     def dictToUser(self, udict):
@@ -232,10 +216,21 @@ class Users(Base):
         self.email = udict.get("email")
         self.username = udict.get("username")
         self.password = udict.get("password")
-        self.authorities_id = udict.get("authorities_id")
+        self.email_confirmed_at = udict.get("email_confirmed_at")
+        self.first_name = udict.get("first_name")
+        self.last_name = udict.get("last_name")
 
     def __repr__(self):
         return '<Users %r>' % self.username
+
+
+# Define the UserRoles association table
+class UserRoles(Base):
+    __tablename__ = 'user_roles'
+    id = Column(mysql.INTEGER, primary_key=True)
+    user_id = Column(mysql.INTEGER, ForeignKey('users.id', ondelete='CASCADE'))
+    role_id = Column(mysql.INTEGER, ForeignKey('roles.id', ondelete='CASCADE'))
+
 
 class Consulta:
     texto = ""

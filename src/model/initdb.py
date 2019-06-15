@@ -13,21 +13,25 @@
 import base64
 
 import math
+from flask_login import UserMixin
 from sqlalchemy.dialects import mysql
-from sqlalchemy import Column, ForeignKey, Text
+from sqlalchemy import Column, ForeignKey
 from sqlalchemy.orm import relationship
-#from src.service.database import Base
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = True
 #For use sqlite
-#app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///F:\\test.db'
-app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://maquinapython:rootroot@85.10.205.173:3306/maquinapython'
+sqlite = 'sqlite:///F:\\test.db'
+localhost = 'mysql+pymysql://root:roota1b2c3@localhost:3306/maquinadebuscaPython'
+maquinadebuscapy = 'mysql+pymysql://root1a2b3c:root1a2b3c@85.10.205.173:3306/maquinadebuscapy'
+maquinapython = 'mysql+pymysql://maquinapython:rootroot@85.10.205.173:3306/maquinapython'
+pythonmaquina = 'mysql+pymysql://pythonmaquina:rootroot@85.10.205.173:3306/pythonmaquina'
+app.config['SQLALCHEMY_DATABASE_URI'] = maquinadebuscapy
 db = SQLAlchemy(app)
-#'mysql+pymysql://maquinapython:rootroot@85.10.205.173:3306/maquinapython'
-#'mysql+pymysql://pythonmaquina:rootroot@85.10.205.173:3306/pythonmaquina'
+
+
 
 class Documento(db.Model):
     __tablename__ = 'Documento'
@@ -46,7 +50,7 @@ class Documento(db.Model):
         documento['texto'] = base64.b64decode(self.texto[2:])
         documento['url'] = self.url
         documento['visao'] = self.visao
-        #print(repr(documento))
+        # print(repr(documento))
         return documento
 
     def dictToDocumento(self, udict):
@@ -75,9 +79,9 @@ class Host(db.Model):
         host['id'] = self.id
         host['count'] = self.count
         host['url'] = self.url
-        #print(repr(host))
+        # print(repr(host))
         return host
-    
+
     def dictToHost(self, udict):
         self.id = udict.get("id")
         self.count = udict.get("count")
@@ -98,16 +102,13 @@ class TermoDocumento(db.Model):
         termoDocumento['id'] = self.id
         termoDocumento['n'] = self.n
         termoDocumento['texto'] = self.texto
-        #print(repr(termoDocumento))
+        # print(repr(termoDocumento))
         return termoDocumento
-    
+
     def dictToTermoDocumento(self, udict):
         self.id = udict.get("id")
         self.n = udict.get("n")
         self.texto = udict.get("texto")
-
-
-
 
     def __repr__(self):
         return '<TermoDocumento %r>' % self.texto
@@ -121,21 +122,6 @@ class Link(db.Model):
     host_id = Column(mysql.BIGINT, ForeignKey('Host.id'))
     host = relationship(Host)
 
-    def linkToJson(self):
-        link = {}
-        link['id'] = self.id
-        link['ultimaColeta'] = self.ultimaColeta
-        link['url'] = self.url
-        link['host_id'] = self.host_id
-        link['host'] = self.host.hostToJson()
-        #print(repr(link))
-        return link
-
-    def dictToLink(self, udict):
-        self.id = udict.get("id")
-        self.ultimaColeta = udict.get("ultimaColeta")
-        self.url = udict.get("url")
-        self.host_id = udict.get("host_id")
 
     def __repr__(self):
         return '<Link %r>' % self.url
@@ -144,9 +130,9 @@ class Link(db.Model):
 class DocumentoLink(db.Model):
     __tablename__ = 'documento_link'
     id = Column(mysql.BIGINT, primary_key=True)
-    documento_id = Column('documento_id',mysql.BIGINT, ForeignKey('Documento.id'))
+    documento_id = Column('documento_id', mysql.BIGINT, ForeignKey('Documento.id'))
     documento = relationship(Documento)
-    link_id = Column('link_id',mysql.BIGINT, ForeignKey('Link.id'))
+    link_id = Column('link_id', mysql.BIGINT, ForeignKey('Link.id'))
     link = relationship(Link)
 
     def documentoLinkToJson(self):
@@ -156,7 +142,7 @@ class DocumentoLink(db.Model):
         documentoLink['documento'] = self.documento.documentoToJson()
         documentoLink['link_id'] = self.link_id
         documentoLink['link'] = self.link.linkToJson()
-        #print(repr(documentoLink))
+        # print(repr(documentoLink))
         return documentoLink
 
     def dictToDocumento(self, udict):
@@ -187,7 +173,7 @@ class IndiceInvertido(db.Model):
         indiceInvertido['termo'] = self.termo.termoDocumentoToJson()
         indiceInvertido['frequencia'] = self.frequencia
         indiceInvertido['peso'] = self.peso
-        #print(repr(indiceInvertido))
+        # print(repr(indiceInvertido))
         return indiceInvertido
 
     def dictToIndiceInvertido(self, udict):
@@ -197,54 +183,38 @@ class IndiceInvertido(db.Model):
         self.frequencia = udict.get("frequencia")
         self.peso = udict.get("peso")
 
-
     def __repr__(self):
         return '<IndiceInvertido %r>' % self.peso
 
 
-class Authorities(db.Model):
-    __tablename__ = 'authorities'
-    id = Column(mysql.BIGINT, primary_key=True)
-    authority = Column(mysql.VARCHAR(255))
-    username = Column(mysql.VARCHAR(255), unique=True)
+# Define the Role data-model
+class Role(db.Model):
+    __tablename__ = 'roles'
+    id = Column(mysql.INTEGER, primary_key=True)
+    name = Column(mysql.VARCHAR(50), unique=True)
 
-    def authoritiesToJson(self):
-        authorities = {}
-        authorities['id'] = self.id
-        authorities['authority'] = self.authority
-        authorities['username'] = self.username
-        #print(repr(authorities))
-        return authorities
-
-    def dictToAuthorities(self, udict):
-        self.id = udict.get("id")
-        self.authority = udict.get("authority")
-        self.username = udict.get("username")
-
-    def __repr__(self):
-        return '<Authorities %r>' % self.authority
-
-
-class Users(db.Model):
-    __tablename__ = "users"
-    id = Column(mysql.BIGINT, primary_key=True)
-    email = Column(mysql.VARCHAR(255))
-    enabled = Column(mysql.BOOLEAN)    
-    username = Column(mysql.VARCHAR(255))
-    password = Column(mysql.VARCHAR(255))
-    authorities_id = Column(mysql.BIGINT, ForeignKey('authorities.id'))
-    authorities = relationship(Authorities)
+# Define User data-model
+class User(db.Model, UserMixin):
+    __tablename__ = 'users'
+    id = Column(mysql.INTEGER, primary_key=True)
+    email = Column(mysql.VARCHAR(255), nullable=False, unique=True)
+    email_confirmed_at = Column(mysql.DATETIME)
+    username = Column(mysql.VARCHAR(50), nullable=False, unique=True)
+    password = Column(mysql.VARCHAR(255), nullable=False)
+    first_name = Column(mysql.VARCHAR(50), nullable=False)
+    last_name = Column(mysql.VARCHAR(50), nullable=False)
+    roles = relationship('Role', secondary='user_roles')
 
     def userToJson(self):
         users = {}
         users['id'] = self.id
         users['email'] = self.email
-        users['enabled'] = self.enabled
+        users['email_confirmed_at'] = self.email_confirmed_at
         users['username'] = self.username
         users['password'] = self.password
-        users['authorities_id'] = self.authorities_id
-        users['authorities'] = self.authorities.authoritiesToJson()
-        #print(repr(users))
+        users['first_name'] = self.first_name
+        users['last_name'] = self.last_name
+        users['roles'] = self.roles.authoritiesToJson()
         return users
 
     def dictToUser(self, udict):
@@ -252,10 +222,20 @@ class Users(db.Model):
         self.email = udict.get("email")
         self.username = udict.get("username")
         self.password = udict.get("password")
-        self.authorities_id = udict.get("authorities_id")
+        self.email_confirmed_at = udict.get("email_confirmed_at")
+        self.first_name = udict.get("first_name")
+        self.last_name = udict.get("last_name")
 
     def __repr__(self):
         return '<Users %r>' % self.username
+
+
+# Define the UserRoles association table
+class UserRoles(db.Model):
+    __tablename__ = 'user_roles'
+    id = Column(mysql.INTEGER, primary_key=True)
+    user_id = Column(mysql.INTEGER, ForeignKey('users.id', ondelete='CASCADE'))
+    role_id = Column(mysql.INTEGER, ForeignKey('roles.id', ondelete='CASCADE'))
 
 
 #for create
