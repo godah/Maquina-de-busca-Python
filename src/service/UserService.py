@@ -1,13 +1,13 @@
-from src.model.models import Users
+from src.model.models import User
 from src.service.database import db_session
 
 class UserService:
 
     def listAll(self):
-        return Users.query.all()
+        return User.query.all()
 
     def findById(self, ident):
-        return Users.query.filter_by(id=ident).first()
+        return User.query.filter_by(id=ident).first()
 
     def remove(self, obj):
         try:
@@ -29,7 +29,7 @@ class UserService:
             return 'fail'
 
     def findByUsername(self, username):
-        users = Users.query.filter(Users.username.like("%"+username+"%")).all()
+        users = User.query.filter(User.username.like("%"+username+"%")).all()
         usersretorno = []
         for user in users:
             usersretorno.append(user.userToJson())
@@ -48,7 +48,7 @@ class UserService:
 
     def listaradminid(self, ident):
         try:
-            admin = Users.query.filter_by(authorities_id=1, id=ident).first()
+            admin = User.query.filter_by(authorities_id=1, id=ident).first()
             return admin.userToJson()
         except Exception:
             return 'fail'
@@ -56,7 +56,7 @@ class UserService:
     def listarusuarios(self):
         try:
             usuariosResp = []
-            usuarios = Users.query.filter_by(authorities_id=2)
+            usuarios = User.query.filter_by(authorities_id=2)
             for usuario in usuarios:
                 usuariosResp.append(usuario.userToJson())
             return usuariosResp
@@ -65,7 +65,7 @@ class UserService:
 
     def listarusuarioid(self, ident):
         try:
-            usuario = Users.query.filter_by(authorities_id=2, id=ident).first()
+            usuario = User.query.filter_by(authorities_id=2, id=ident).first()
             return usuario.userToJson()
         except Exception:
             return 'fail'
