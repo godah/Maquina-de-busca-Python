@@ -36,9 +36,7 @@ def post():
         abort(http.HTTPStatus.PRECONDITION_REQUIRED)
     try:
         body = request.get_json()
-        obj = Link()
-        obj.dictToLink(body)
-        obj = service.inserirSemente(obj.url)
+        obj = service.inserirSemente(body.get("url"))
         return jsonify(obj.linkToJson())
     except Exception:
         abort(http.HTTPStatus.INTERNAL_SERVER_ERROR)

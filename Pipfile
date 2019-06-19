@@ -10,6 +10,16 @@ Flask = "*"
 flask_sqlalchemy = "*"
 mysql-connector-python = "*" 
 pymysql = "*"
+flask_sqlalchemy = "*"
+sqlalchemy = "*"
+mysql-connector-python = "*"
+pymysql = "*"
+requests = "*"
+beautifulsoup4 = "*"
+Paginator = "*"
+paginate = "*"
+UserManager = "*"
+flask-login = "*"
 
 [requires]
 

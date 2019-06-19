@@ -1,4 +1,4 @@
-#!/home/lobo/git/Maquina-de-busca-Python/src/Maquina-de-busca-Python/bin/python
+#!/home/lobo/git/Maquina-de-busca-Python/Maquina-de-busca-Python/bin/python
 
 import sys
 import getopt

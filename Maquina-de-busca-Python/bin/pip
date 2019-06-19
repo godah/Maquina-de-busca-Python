@@ -1,4 +1,4 @@
-#!/home/lobo/git/Maquina-de-busca-Python/src/Maquina-de-busca-Python/bin/python3
+#!/home/lobo/git/Maquina-de-busca-Python/Maquina-de-busca-Python/bin/python3
 # -*- coding: utf-8 -*-
 import re
 import sys

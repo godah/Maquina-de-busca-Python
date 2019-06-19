@@ -28,7 +28,7 @@ def _deactivate(args):
 _deactivate(["nondestructive"])
 aliases["deactivate"] = _deactivate
 
-$VIRTUAL_ENV = r"/home/lobo/git/Maquina-de-busca-Python/src/Maquina-de-busca-Python"
+$VIRTUAL_ENV = r"/home/lobo/git/Maquina-de-busca-Python/Maquina-de-busca-Python"
 
 $_OLD_VIRTUAL_PATH = $PATH
 $PATH = $PATH[:]

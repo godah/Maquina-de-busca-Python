@@ -56,7 +56,7 @@ end
 # Unset irrelevant variables.
 deactivate nondestructive
 
-set -gx VIRTUAL_ENV "/home/lobo/git/Maquina-de-busca-Python/src/Maquina-de-busca-Python"
+set -gx VIRTUAL_ENV "/home/lobo/git/Maquina-de-busca-Python/Maquina-de-busca-Python"
 
 # https://github.com/fish-shell/fish-shell/issues/436 altered PATH handling
 if test (echo $FISH_VERSION | tr "." "\n")[1] -lt 3

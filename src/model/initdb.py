@@ -28,7 +28,8 @@ localhost = 'mysql+pymysql://root:roota1b2c3@localhost:3306/maquinadebuscaPython
 maquinadebuscapy = 'mysql+pymysql://root1a2b3c:root1a2b3c@85.10.205.173:3306/maquinadebuscapy'
 maquinapython = 'mysql+pymysql://maquinapython:rootroot@85.10.205.173:3306/maquinapython'
 pythonmaquina = 'mysql+pymysql://pythonmaquina:rootroot@85.10.205.173:3306/pythonmaquina'
-app.config['SQLALCHEMY_DATABASE_URI'] = maquinadebuscapy
+localhostnote = 'mysql+pymysql://root1a2b3c:root1a2b3c@localhost:3306/maquinadebuscaPython'
+app.config['SQLALCHEMY_DATABASE_URI'] = localhostnote
 db = SQLAlchemy(app)
 
 

@@ -8,7 +8,7 @@ class StopwordsService:
 
     def readStopWords(self):
         try:
-            f = open(".\\resources\\stopwords.txt","r")
+            f = open("src/resources/stopwords.txt","r")
             for line in f:
                 self.stopwords.append(line[0:len(line)-1])
         except Exception:

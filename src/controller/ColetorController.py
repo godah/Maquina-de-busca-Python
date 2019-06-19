@@ -7,7 +7,7 @@ coletor_controller = Blueprint('coletor_controller', __name__, template_folder='
 service = ColetorService()
 
 
-@coletor_controller.route('/coletor')
+@coletor_controller.route('/coletor/iniciar')
 def iniciar():
     try:
         service.executar()
