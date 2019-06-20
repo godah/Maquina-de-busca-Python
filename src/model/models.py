@@ -255,18 +255,18 @@ class Consulta:
         return somaQuadradosPesos
 
     def consultaToJson(self):
-        consulta = {}
-        consulta['texto'] = self.texto
-        consulta['visao'] = self.visao
+        dictc = {}
+        dictc['texto'] = self.texto
+        dictc['visao'] = self.visao
         termos = []
         for termo in self.termosConsulta:
             termos.append(termo.termoConsultaToJson())
-        consulta['termosConsulta'] = termos
+        dictc['termosConsulta'] = termos
         ranks = []
         for rank in self.ranking:
             ranks.append(rank.entradaRankingToJson())
-        consulta['ranking'] = ranks
-        return consulta
+        dictc['ranking'] = ranks
+        return dictc
 
 class TermoConsulta:
     texto = ""
@@ -308,8 +308,8 @@ class EntradaRanking:
         entradaRanking = {}
         entradaRanking['url'] = self.url
         entradaRanking['produtoPesos'] = self.produtoPesos
-        entradaRanking['somaQuadradosPesosDocumento'] = self.somaQuadradosPesosDocumento
-        entradaRanking['somaQuadradosPesosConsulta'] = self.somaQuadradosPesosConsulta
+        entradaRanking['somaQuadradosPesosDocumento'] = str(self.somaQuadradosPesosDocumento)
+        entradaRanking['somaQuadradosPesosConsulta'] = str(self.somaQuadradosPesosConsulta)
         entradaRanking['similaridade'] = self.similaridade
         return entradaRanking
 

@@ -14,7 +14,8 @@ def consultar(consultadousuario):
         consulta = Consulta('', '')
         consulta = pcs.processarConsulta(consultadousuario)
         if consulta.ranking is not None:
-            return jsonify(consulta.consultaToJson())
+            consultan = consulta.consultaToJson()
+            return jsonify(consultan)
         else:
             raise Exception('o índice invertido não pode ser criado')
     except Exception:
