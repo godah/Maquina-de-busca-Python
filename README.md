@@ -1,2 +1,2 @@
 # Maquina-de-busca-Python
-API Maquina de busca implementada em Python com Flask e Django ORM
+API Maquina de busca implementada em Python com Flask e SqlAlchemy
