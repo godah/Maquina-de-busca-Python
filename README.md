@@ -27,6 +27,16 @@ pip install paginate
 pip install UserManager
 pip install flask-login
 
+#Para criar as tabelas na pasta /src/model
+#Execute no console do Python os comandos abaixo no diretório deste arquivo
+#from initdb import db
+#db.create_all()
+
+#Para testar uma query
+#$python
+#>>>from initdb import Link
+#>>>Link.query.all()
+
 #Iniciar servidor
 #Dentro do diretório /src
 set FLASK_APP=api.py
@@ -84,6 +94,15 @@ $pip3 install flask-login --default-timeout=1000
 #desativando ambiente
 deactive
 
+#Para criar as tabelas na pasta /src/model
+#Execute no console do Python3 os comandos abaixo no diretório deste arquivo
+#from initdb import db
+#db.create_all()
+
+#Para testar uma query
+#$python
+#>>>from initdb import Link
+#>>>Link.query.all()
 
 #Iniciar servidor
 #Dentro da pasta /src
@@ -128,4 +147,3 @@ $ flask run
 
 #Execute o comando
 #$ python -m pip install --trusted-host pypi.python.org --trusted-host files.pythonhosted.org --trusted-host pypi.org --upgrade pip
-
